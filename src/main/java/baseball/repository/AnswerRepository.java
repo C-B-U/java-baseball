@@ -27,7 +27,6 @@ public class AnswerRepository {
             }
         }
         this.answer = answer;
-        System.out.println("answer = " + answer);
         return answer;
     }
 
