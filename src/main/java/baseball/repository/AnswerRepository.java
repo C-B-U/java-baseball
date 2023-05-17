@@ -7,8 +7,8 @@ import java.util.List;
 
 public class AnswerRepository {
 
-    private List<Integer> answer;
-    private List<Integer> userAnswer;
+    private static List<Integer> answer;
+    private static List<Integer> userAnswer;
 
     public List<Integer> getAnswer() {
         return answer;
@@ -20,13 +20,14 @@ public class AnswerRepository {
 
     public List<Integer> makeAnswer() {
         List<Integer> answer = new ArrayList<>();
-        while(answer.size() < 3) {
+        while (answer.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if(!answer.contains(randomNumber)) {
+            if (!answer.contains(randomNumber)) {
                 answer.add(randomNumber);
             }
         }
         this.answer = answer;
+        System.out.println("answer = " + answer);
         return answer;
     }
 
@@ -34,7 +35,7 @@ public class AnswerRepository {
 //        List<Integer> ints = Arrays.asList(Stream.of(answer.split("")).mapToInt(Integer::parseInt).toArray());
         List<Integer> userAnswer = new ArrayList<Integer>();
         String[] splitAnswer = answer.split("");
-        for(String tmp : splitAnswer) {
+        for (String tmp : splitAnswer) {
             userAnswer.add(Integer.parseInt(tmp));
         }
         this.userAnswer = userAnswer;
