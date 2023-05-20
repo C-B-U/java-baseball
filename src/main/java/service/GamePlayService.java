@@ -7,20 +7,18 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class GamePlayService {
-    private List<Integer> computer;
-    private List<Integer> user;
-    private List<Integer> check;
+    private static List<Integer> computer;
+    private static List<Integer> user;
+    private static List<Integer> check;
     private int strike;
     private int ball;
     private int STRIKECHECK = 0;
 
     public void gameStart() {
-        System.out.println(GameMessage.START_MESSAGE);
+        System.out.println(GameMessage.START_MESSAGE.getMessage());
     }
 
     public void makeBall() {
@@ -33,21 +31,29 @@ public class GamePlayService {
         }
     }
 
-    public void inputBall() {
+    private void inputBall() {
+        System.out.print(GameMessage.INPUT_MESSAGE.getMessage());
         user = new ArrayList<>();
+        String input = Console.readLine();
+
+        if (input.length() != 3) {
+            throw new IllegalArgumentException("잘못된 개수의 숫자를 입력했습니다.");
+        }
+
         for (int i = 0; i < 3; i++) {
-            int num = Integer.parseInt(Console.readLine());
+            int num = input.charAt(i) - '0';
             if (user.contains(num)) {
                 throw new IllegalArgumentException("중복된 숫자를 입력했습니다.");
+            } else if (num < 1 || num > 9) {
+                throw new IllegalArgumentException("잘못된 숫자를 입력했습니다.");
             }
             user.add(num);
         }
-    }
 
+    }
 
     public void continueGame() {
         while (true) {
-            System.out.print(GameMessage.INPUT_MESSAGE);
             inputBall();
             checkResult();
             if (checkResult()) {
@@ -57,8 +63,7 @@ public class GamePlayService {
         gameStatus();
     }
 
-
-    public boolean checkResult() {
+    private boolean checkResult() {
         strike = 0;
         ball = 0;
 
@@ -75,15 +80,15 @@ public class GamePlayService {
 
     private void printResult() {
         if (strike == 3) {
-            System.out.println(GameMessage.SUCCESS_MESSAGE);
+            System.out.println(GameMessage.SUCCESS_MESSAGE.getMessage());
         } else if (strike > 0 && ball > 0) {
-            System.out.println(ball + BallCheck.BALL.name() + " " + strike + BallCheck.STRIKE.name());
+            System.out.println(ball + BallCheck.BALL.getMessage() + " " + strike + BallCheck.STRIKE.getMessage());
         } else if (strike > 0) {
-            System.out.println(strike + BallCheck.STRIKE.name());
+            System.out.println(strike + BallCheck.STRIKE.getMessage());
         } else if (ball > 0) {
-            System.out.println(ball + BallCheck.BALL.name());
+            System.out.println(ball + BallCheck.BALL.getMessage());
         } else {
-            System.out.println(BallCheck.NOTHING);
+            System.out.println(BallCheck.NOTHING.getMessage());
         }
     }
 
@@ -96,7 +101,8 @@ public class GamePlayService {
     }
 
     private void checkStrike() {
-        Collections.copy(check, user);
+        check = new ArrayList<>();
+        check.addAll(user);
         for (int i = 0; i < 3; i++) {
             if (check.get(i).equals(computer.get(i))) {
                 check.set(i, STRIKECHECK);
@@ -106,10 +112,12 @@ public class GamePlayService {
     }
 
     public boolean gameStatus() {
-        System.out.println(GameMessage.GAMESTATUS_MESSAGE);
-        if (Console.readLine().equals(GameCheck.RESTART)) {
+        System.out.println(GameMessage.GAMESTATUS_MESSAGE.getMessage());
+        String input = Console.readLine();
+        input = input.trim();
+        if (input.equals(GameCheck.RESTART.getGameCheck())){
             return true;
-        } else if (Console.readLine().equals(GameCheck.QUIT)) {
+        } else if (input.equals(GameCheck.QUIT.getGameCheck())) {
             return false;
         } else {
             throw new IllegalArgumentException("잘못된 값을 입력했습니다.");
