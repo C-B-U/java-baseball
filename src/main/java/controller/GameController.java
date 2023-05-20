@@ -3,7 +3,11 @@ package controller;
 import service.GamePlayService;
 
 public class GameController {
-    private final GamePlayService gamePlayService = new GamePlayService();
+    private final GamePlayService gamePlayService;
+
+    public GameController() {
+        this.gamePlayService = new GamePlayService();
+    }
 
     public void gameStart() {
         gamePlayService.gameStart();
