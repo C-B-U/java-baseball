@@ -5,13 +5,14 @@ public enum BallCheck {
     BALL("볼"),
     NOTHING("낫싱");
 
-    private final String ballCheck;
+    private final String message;
 
-    BallCheck(String ballCheck) {
-        this.ballCheck = ballCheck;
+    public String getMessage() {
+        return message;
     }
 
-    public String getCheck() {
-        return ballCheck;
+    BallCheck(String message) {
+        this.message = message;
     }
+
 }
