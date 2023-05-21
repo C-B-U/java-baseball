@@ -59,7 +59,6 @@ public class GamePlayService {
                 break;
             }
         }
-        gameStatus();
     }
 
     private boolean checkResult() {
@@ -79,6 +78,7 @@ public class GamePlayService {
 
     private void printResult() {
         if (strike == 3) {
+            System.out.println(strike + BallCheck.STRIKE.getMessage());
             System.out.println(GameMessage.SUCCESS_MESSAGE.getMessage());
         } else if (strike > 0 && ball > 0) {
             System.out.println(ball + BallCheck.BALL.getMessage() + " " + strike + BallCheck.STRIKE.getMessage());
@@ -114,9 +114,9 @@ public class GamePlayService {
         System.out.println(GameMessage.GAMESTATUS_MESSAGE.getMessage());
         String input = Console.readLine();
         input = input.trim();
-        if (input.equals(GameCheck.RESTART.getGameCheck())){
+        if (input.equals(GameCheck.RESTART.getMessage())) {
             return true;
-        } else if (input.equals(GameCheck.QUIT.getGameCheck())) {
+        } else if (input.equals(GameCheck.QUIT.getMessage())) {
             return false;
         } else {
             throw new IllegalArgumentException("잘못된 값을 입력했습니다.");

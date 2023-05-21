@@ -4,13 +4,13 @@ public enum GameCheck {
     RESTART("1"),
     QUIT("2");
 
-    private final String gameCheck;
+    private final String message;
 
-    GameCheck(String gameCheck) {
-        this.gameCheck = gameCheck;
+    GameCheck(String message) {
+        this.message = message;
     }
 
-    public String getGameCheck() {
-        return gameCheck;
+    public String getMessage() {
+        return message;
     }
 }
