@@ -55,7 +55,6 @@ public class GamePlayService {
     public void continueGame() {
         while (true) {
             inputBall();
-            checkResult();
             if (checkResult()) {
                 break;
             }
