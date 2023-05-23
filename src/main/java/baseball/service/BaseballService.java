@@ -1,6 +1,7 @@
 package baseball.service;
 
 import baseball.PlayResult;
+import baseball.exception.ServiceException;
 import baseball.repository.AnswerRepository;
 
 import java.util.List;
@@ -11,32 +12,13 @@ import static baseball.PlayResult.*;
 
 public class BaseballService {
 
+    private final ServiceException serviceException = new ServiceException();
     private final AnswerRepository answerRepository = new AnswerRepository();
 
 
     public List<Integer> makeUserAnswer(String userAnswer) {
-        isCorrectUserAnswer(userAnswer);
+        serviceException.correctUserAnswer(userAnswer);
         return answerRepository.setUerAnswer(userAnswer);
-    }
-
-    private void isCorrectUserAnswer(String userAnswer) {
-        lengthOfUserAnswer(userAnswer);
-        isInteger(userAnswer);
-
-    }
-
-    private void lengthOfUserAnswer(String userAnswer) {
-        if (userAnswer.length() != 3) {
-            throw new IllegalArgumentException("숫자는 3개만 입력해주세요.");
-        }
-    }
-
-    private void isInteger(String userAnswer) {
-        try {
-            Integer.parseInt(userAnswer);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public List<Integer> makeAnswer() {
@@ -65,20 +47,6 @@ public class BaseballService {
             }
         }
         return cnt;
-    }
-
-    public String makeStringReply(Map<PlayResult, Integer> mapReply) {
-        StringBuilder sb = new StringBuilder();
-        if (mapReply.containsKey(NOTHING)) {
-            return NOTHING.toString();
-        }
-        if (mapReply.get(BALL) != 0) {
-            sb.append(mapReply.get(BALL).toString()).append(BALL).append(" ");
-        }
-        if (mapReply.get(STRIKE) != 0) {
-            sb.append(mapReply.get(STRIKE).toString()).append(STRIKE);
-        }
-        return sb.toString();
     }
 
     private Map<PlayResult, Integer> makeMapReply(int strikeCnt, int ballCnt) {
