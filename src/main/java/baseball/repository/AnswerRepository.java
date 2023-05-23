@@ -22,16 +22,16 @@ public class AnswerRepository {
         return new ArrayList<>(userAnswer);
     }
 
-    public List<Integer> makeAnswer() {
-        List<Integer> answer = new ArrayList<>();
-        while (answer.size() < 3) {
+    public List<Integer> createAnswer() {
+        List<Integer> createdAnswer = new ArrayList<>();
+        while (createdAnswer.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!answer.contains(randomNumber)) {
-                answer.add(randomNumber);
+            if (!createdAnswer.contains(randomNumber)) {
+                createdAnswer.add(randomNumber);
             }
         }
-        this.answer = answer;
-        return answer;
+        this.answer = createdAnswer;
+        return new ArrayList<>(answer);
     }
 
     public List<Integer> setUerAnswer(String answer) {
