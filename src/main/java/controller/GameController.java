@@ -1,5 +1,7 @@
 package controller;
 
+import baseball.BallCheck;
+import baseball.GameMessage;
 import service.GamePlayService;
 
 public class GameController {
@@ -10,21 +12,39 @@ public class GameController {
     }
 
     public void gameStart() {
-        gamePlayService.gameStart();
-        gameSetting();
-    }
-
-    public void gameSetting() {
+        System.out.println(GameMessage.START.getMessage());
         gamePlayService.makeBall();
         continueGame();
     }
 
-    public void continueGame() {
-        gamePlayService.continueGame();
+    private void continueGame() {
+        while (true) {
+            System.out.print(GameMessage.INPUT.getMessage());
+            gamePlayService.inputBall();
+            if (checkNothing()) {
+                System.out.println(BallCheck.NOTHING.getMessage());
+                continue;
+            }
+            if (checkResult()) {
+                System.out.println(GameMessage.SUCCESS.getMessage());
+                break;
+            }
+            gamePlayService.strikeBallCount();
+            System.out.println(GamePlayService.sb);
+        }
         gameStatus();
     }
 
-    public void gameStatus() {
+    private boolean checkNothing() {
+        return gamePlayService.checkNothing();
+    }
+
+    private boolean checkResult() {
+        return gamePlayService.checkResult();
+    }
+
+    private void gameStatus() {
+        System.out.println(GameMessage.GAMESTATUS.getMessage());
         if (gamePlayService.gameStatus()) {
             gameStart();
         }
