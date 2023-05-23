@@ -51,5 +51,12 @@ public class GameService {
         }
         return new GameResult(strike, ball);
     }
+
     // 게임 재시작
+    public boolean isRestartGame(String inputNum) {
+        inputNum = inputNum.trim();
+        if(!(inputNum.equals("1") || inputNum.equals("2")))
+            throw new IllegalArgumentException();
+        return inputNum.equals("1");
+    }
 }

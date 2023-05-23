@@ -30,6 +30,10 @@ public class GameResult {
         return ball;
     }
 
+    public boolean isGameSuccess() {
+        return strike == 3;
+    }
+
     // 게임 결과
     public static String makeGameResult(GameResult gameResult) {
         String output = "";
