@@ -45,7 +45,9 @@ public class GameService {
             if (computerNumbers.get(i).equals(inputNumbers.get(i))) {
                 strike++;
             }
-
+            else if (inputNumbers.get(i).equals(computerNumbers.get((i + 1) % 3)) || inputNumbers.get(i).equals(computerNumbers.get((i + 2) % 3))) {
+                ball++;
+            }
         }
         return new GameResult(strike, ball);
     }
@@ -53,8 +55,9 @@ public class GameService {
     // 게임 재시작
     public boolean isRestartGame(String inputNum) {
         inputNum = inputNum.trim();
-        if(!(inputNum.equals("1") || inputNum.equals("2")))
+        if(!(inputNum.equals("1") || inputNum.equals("2"))) {
             throw new IllegalArgumentException();
+        }
         return inputNum.equals("1");
     }
 }
