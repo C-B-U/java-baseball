@@ -1,13 +1,9 @@
 package baseball.repository;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class AnswerRepository {
 
@@ -25,21 +21,29 @@ public class AnswerRepository {
     public List<Integer> createAnswer() {
         List<Integer> createdAnswer = new ArrayList<>();
         while (createdAnswer.size() < 3) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!createdAnswer.contains(randomNumber)) {
-                createdAnswer.add(randomNumber);
-            }
+            createdAnswer = createComputerAnswer(createdAnswer);
         }
         this.answer = createdAnswer;
         return new ArrayList<>(answer);
     }
 
-    public List<Integer> setUerAnswer(String answer) {
-//        List<Integer> ints = Arrays.asList(Stream.of(answer.split("")).mapToInt(Integer::parseInt).collect(Collections.()));
-        String[] splitAnswer = answer.split("");
-        for (String tmp : splitAnswer) {
-            userAnswer.add(Integer.parseInt(tmp));
+    private List<Integer> createComputerAnswer(List<Integer> createdAnswer) {
+        int randomNumber = Randoms.pickNumberInRange(1, 9);
+        if (!createdAnswer.contains(randomNumber)) {
+            createdAnswer.add(randomNumber);
         }
-        return userAnswer;
+        return createAnswer();
+    }
+
+
+
+    public List<Integer> setUerAnswer(String answer) {
+        String[] splitAnswer = answer.split("");
+        ArrayList<Integer> userAnswerTmp = new ArrayList<>();
+        for (String tmp : splitAnswer) {
+            userAnswerTmp.add(Integer.parseInt(tmp));
+        }
+        userAnswer = userAnswerTmp;
+        return new ArrayList<>(userAnswer);
     }
 }
