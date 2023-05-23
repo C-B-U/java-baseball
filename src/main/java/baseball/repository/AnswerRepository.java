@@ -3,19 +3,23 @@ package baseball.repository;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AnswerRepository {
 
-    private static List<Integer> answer;
-    private static List<Integer> userAnswer;
+    private List<Integer> answer;
+    private List<Integer> userAnswer;
 
     public List<Integer> getAnswer() {
-        return answer;
+        return new ArrayList<>(answer);
     }
 
     public List<Integer> getUserAnswer() {
-        return userAnswer;
+        return new ArrayList<>(userAnswer);
     }
 
     public List<Integer> makeAnswer() {
@@ -31,13 +35,11 @@ public class AnswerRepository {
     }
 
     public List<Integer> setUerAnswer(String answer) {
-//        List<Integer> ints = Arrays.asList(Stream.of(answer.split("")).mapToInt(Integer::parseInt).toArray());
-        List<Integer> userAnswer = new ArrayList<Integer>();
+//        List<Integer> ints = Arrays.asList(Stream.of(answer.split("")).mapToInt(Integer::parseInt).collect(Collections.()));
         String[] splitAnswer = answer.split("");
         for (String tmp : splitAnswer) {
             userAnswer.add(Integer.parseInt(tmp));
         }
-        this.userAnswer = userAnswer;
         return userAnswer;
     }
 }
