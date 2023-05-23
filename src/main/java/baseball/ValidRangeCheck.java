@@ -1,20 +1,18 @@
 package baseball;
 
-import java.util.function.Function;
+import java.util.function.Predicate;
 
 public enum ValidRangeCheck {
-    VALIDNUMBERRANGE(num -> num >= 1 && num <= 9);
+    VALID_NUMBER_RANGE(num -> num >= 1 && num <= 9),
+    VALID_GAME_STATUS_RANGE(num -> num.equals(1) || num.equals(2));
 
-    private final Function<Integer, Boolean> checkFunc;
+    private final Predicate<Integer> checkFunc;
 
-    ValidRangeCheck(Function<Integer, Boolean> checkFunc) {
+    ValidRangeCheck(Predicate<Integer> checkFunc) {
         this.checkFunc = checkFunc;
     }
 
-    public boolean checkValidRange(int num) {
-        if (checkFunc.apply(num)) {
-            return true;
-        }
-        return false;
+    public boolean checkInvalidRange(int num) {
+        return !checkFunc.test(num);
     }
 }

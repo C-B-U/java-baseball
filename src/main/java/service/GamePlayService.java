@@ -15,16 +15,17 @@ public class GamePlayService {
 
     private int strike;
     private int ball;
-    private int strikeCheck = 0;
-    private boolean isStrike;
-    private boolean isBall;
+    private String input;
+    private int inputNum;
 
-    private static int VAILDBALLCOUNT = 3;
-    public static StringBuilder sb;
+    public StringBuilder sb;
+
+    private static final int strikeChecked = 0;
+    private static final int validBallCount = 3;
 
     public void makeBall() {
         computer = new ArrayList<>();
-        while (computer.size() < VAILDBALLCOUNT) {
+        while (computer.size() < validBallCount) {
             int randomNum = Randoms.pickNumberInRange(1, 9);
             if (!computer.contains(randomNum)) {
                 computer.add(randomNum);
@@ -34,42 +35,56 @@ public class GamePlayService {
 
     public void inputBall() {
         user = new ArrayList<>();
-        String input = Console.readLine();
-        input = input.trim();
-        if (input.length() != VAILDBALLCOUNT) {
-            throw new IllegalArgumentException(ExceptionMessage.INPUTWRONGCOUNT.getMessage());
-        }
-        for (int i = 0; i < VAILDBALLCOUNT; i++) {
-            int num = input.charAt(i) - '0';
-            if (user.contains(num)) {
-                throw new IllegalArgumentException(ExceptionMessage.INPUTDUPLICATENUMBER.getMessage());
+        input = Console.readLine().trim();
+        for (int i = 0; i < validBallCount; i++) {
+            inputNum = input.charAt(i) - '0';
+            if (checkValidation()) {
+                user.add(inputNum);
             }
-            if (!ValidRangeCheck.VALIDNUMBERRANGE.checkValidRange(num)) {
-                throw new IllegalArgumentException(ExceptionMessage.INPUTWRONGNUMBER.getMessage());
-            }
-            user.add(num);
         }
     }
 
-    public boolean checkNothing() {
-        strike = 0;
-        ball = 0;
+    private boolean checkValidation() {
+        return validateCount() && validateDuplication() && validateRange();
+    }
+
+    private boolean validateCount() {
+        if (input.length() != validBallCount) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_WRONG_COUNT.getMessage());
+        }
+        return true;
+    }
+
+    private boolean validateDuplication() {
+        if (user.contains(inputNum)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_DUPLICATE_NUMBER.getMessage());
+        }
+        return true;
+    }
+
+    private boolean validateRange() {
+        if (ValidRangeCheck.VALID_NUMBER_RANGE.checkInvalidRange(inputNum)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_WRONG_NUMBER.getMessage());
+        }
+        return true;
+    }
+
+    public boolean checkResult() {
+        strike = ball = 0;
         sb = new StringBuilder();
-        isStrike = checkStrike();
-        isBall = checkBall();
-        strikeBallCount();
-        return !(isStrike || isBall);
+        checkStrike();
+        checkBall();
+        return strike == validBallCount;
     }
 
-    public boolean checkStrike() {
+    private void checkStrike() {
         copyList();
-        for (int i = 0; i < VAILDBALLCOUNT; i++) {
+        for (int i = 0; i < validBallCount; i++) {
             if (computer.get(i).equals(check.get(i))) {
-                check.set(i, strikeCheck);
+                check.set(i, strikeChecked);
                 strike++;
             }
         }
-        return strike > 0;
     }
 
     private void copyList() {
@@ -77,40 +92,44 @@ public class GamePlayService {
         check.addAll(user);
     }
 
-    public boolean checkBall() {
-        for (int i = 0; i < VAILDBALLCOUNT; i++) {
+    private void checkBall() {
+        for (int i = 0; i < validBallCount; i++) {
             if (computer.contains(check.get(i))) {
                 ball++;
             }
         }
-        return ball > 0;
     }
 
-    public void strikeBallCount(){
+    public void strikeBallCount() {
+        hasBall();
+        hasStrike();
+        isNothing();
+    }
+
+    private void hasBall() {
         if (ball > 0) {
-            sb.append(ball + BallCheck.BALL.getMessage()).append(" ");
-        }
-        if (strike > 0) {
-            sb.append(strike + BallCheck.STRIKE.getMessage());
+            sb.append(ball).append(BallCheck.BALL.getMessage()).append(" ");
         }
     }
 
-    public boolean checkResult() {
-        if (strike == VAILDBALLCOUNT) {
-            return true;
+    private void hasStrike() {
+        if (strike > 0) {
+            sb.append(strike).append(BallCheck.STRIKE.getMessage());
         }
-        return false;
+    }
+
+    private void isNothing() {
+        if (strike == 0 && ball == 0) {
+            sb.append(BallCheck.NOTHING.getMessage());
+        }
     }
 
     public boolean gameStatus() {
-        String input = Console.readLine();
-        input = input.trim();
-        if (input.equals(GameCheck.RESTART.getMessage())) {
-            return true;
-        } else if (input.equals(GameCheck.QUIT.getMessage())) {
-            return false;
-        } else {
-            throw new IllegalArgumentException(ExceptionMessage.INPUTWRONGNUMBER.getMessage());
+        input = Console.readLine().trim();
+        int status = Integer.parseInt(input.trim());
+        if (ValidRangeCheck.VALID_GAME_STATUS_RANGE.checkInvalidRange(status)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_WRONG_NUMBER.getMessage());
         }
+        return input.equals(GameCheck.RESTART.getMessage());
     }
 }
