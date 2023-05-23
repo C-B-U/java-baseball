@@ -1,12 +1,25 @@
 package controller;
 
+import domain.GameMassage;
+import service.GameService;
+
+import java.util.List;
+
 public class GameController {
 
+    private final GameService gameService;
+    private List<Integer> answerNumbers;
+
+    public GameController() {
+        this.gameService = new GameService();
+    }
 
     // 게임 세팅
     private void settingGame() {
         // 컴퓨터 번호 설정
+        answerNumbers = gameService.setComputerNumbers();
         // 게임 시작 문구
+        GameMassage.gameStartMessage();
     }
 
     // 게임 시작
