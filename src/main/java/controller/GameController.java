@@ -1,5 +1,6 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import domain.GameMassage;
 import service.GameService;
 
@@ -25,6 +26,8 @@ public class GameController {
     // 게임 시작
     public void startGame() {
         // 사용자 번호 입력 (검증)
+        GameMassage.inputNumberMessage();
+        String inputNumbers = gameService.validateInputNumber(Console.readLine());
         // 결과 도출
     }
 

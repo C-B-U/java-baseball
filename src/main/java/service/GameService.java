@@ -3,7 +3,10 @@ package service;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GameService {
 
@@ -19,6 +22,17 @@ public class GameService {
         return computerNumbers;
     }
     // 사용자 번호 검증
+    public String validateInputNumber(String inputNumber) {
+        inputNumber = inputNumber.trim();
+
+        boolean matches = inputNumber.matches("[1-9]{3}");
+        Set<String> collect = Arrays.asList(inputNumber.split("")).stream().collect(Collectors.toSet());
+
+        if(!matches || collect.size() != 3) {
+            throw new IllegalArgumentException();
+        }
+        return inputNumber;
+    }
 
     // 결과 도출
 
