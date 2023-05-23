@@ -45,9 +45,7 @@ public class GameService {
             if (computerNumbers.get(i).equals(inputNumbers.get(i))) {
                 strike++;
             }
-            else if (inputNumbers.get(i).equals(computerNumbers.get((i + 1) % 3)) || inputNumbers.get(i) == computerNumbers.get((i + 2) % 3)) {
-                ball++;
-            }
+
         }
         return new GameResult(strike, ball);
     }

@@ -37,13 +37,15 @@ public class GameResult {
     // 게임 결과
     public static String makeGameResult(GameResult gameResult) {
         String output = "";
-        if (gameResult.getStrike() == 0 && gameResult.getBall() == 0)
+        if (gameResult.getStrike() == 0 && gameResult.getBall() == 0) {
             return NOTHING;
-
-        if (gameResult.getStrike() != 0)
+        }
+        if (gameResult.getStrike() != 0) {
             output = gameResult.getStrike() + "스트라이크";
-        if (gameResult.getBall() > 0)
+        }
+        if (gameResult.getBall() > 0) {
             output = gameResult.getBall() + "볼 " + output;
+        }
         return output.trim();
     }
 
