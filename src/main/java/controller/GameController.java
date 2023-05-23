@@ -1,7 +1,8 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.GameMassage;
+import domain.GameMessage;
+import domain.GameResult;
 import service.GameService;
 
 import java.util.List;
@@ -20,15 +21,18 @@ public class GameController {
         // 컴퓨터 번호 설정
         answerNumbers = gameService.setComputerNumbers();
         // 게임 시작 문구
-        GameMassage.gameStartMessage();
+        GameMessage.gameStartMessage();
     }
 
     // 게임 시작
     public void startGame() {
         // 사용자 번호 입력 (검증)
-        GameMassage.inputNumberMessage();
+        GameMessage.inputNumberMessage();
         String inputNumbers = gameService.validateInputNumber(Console.readLine());
         // 결과 도출
+        GameResult gameResult = gameService.outputGameResult(inputNumbers, answerNumbers);
+        GameResult.gameResultMessage(gameResult);
+
     }
 
     public void restartGame() {
