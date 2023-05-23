@@ -1,11 +1,11 @@
 package baseball;
 
-import controller.Controller;
+import controller.GameController;
 
 public class Application {
     public static void main(String[] args) throws IllegalArgumentException{
         // TODO: 프로그램 구현
-        Controller controller = new Controller();
-        controller.startGame();
+        GameController gameController = new GameController();
+        gameController.startGame();
     }
 }
