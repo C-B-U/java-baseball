@@ -1,6 +1,7 @@
 package controller;
 
 import baseball.GameMessage;
+import camp.nextstep.edu.missionutils.Console;
 import service.GamePlayService;
 
 public class GameController {
@@ -29,7 +30,8 @@ public class GameController {
 
     private void inputBall() {
         System.out.print(GameMessage.INPUT.getMessage());
-        gamePlayService.inputBall();
+        String input = Console.readLine().trim();
+        gamePlayService.inputBall(input);
     }
 
     private boolean checkResult() {
@@ -41,13 +43,15 @@ public class GameController {
     }
 
     private void strikeBallCount() {
-        gamePlayService.strikeBallCount();
-        System.out.println(gamePlayService.sb);
+        StringBuilder sb = new StringBuilder();
+        gamePlayService.strikeBallCount(sb);
+        System.out.println(sb);
     }
 
     private void gameStatus() {
         System.out.println(GameMessage.GAME_STATUS.getMessage());
-        if (gamePlayService.gameStatus()) {
+        String input = Console.readLine().trim();
+        if (gamePlayService.gameStatus(input)) {
             gameStart();
         }
     }
