@@ -32,7 +32,7 @@ public class AnswerRepository {
         if (!createdAnswer.contains(randomNumber)) {
             createdAnswer.add(randomNumber);
         }
-        return createAnswer();
+        return createdAnswer;
     }
 
 
