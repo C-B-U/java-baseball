@@ -12,7 +12,7 @@ public enum PlayResult {
         this.playResult = playResult;
     }
     public String getPlayResult() {
-        return this.playResult;
+        return playResult;
     }
 
 }

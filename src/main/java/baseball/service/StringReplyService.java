@@ -12,7 +12,7 @@ public class StringReplyService {
     public String makeStringReply(Map<PlayResult, Integer> mapReply) {
         StringBuilder sb = new StringBuilder();
         if (mapReply.containsKey(NOTHING)) {
-            return NOTHING.toString();
+            return NOTHING.getPlayResult();
         }
         sb.append(makeBallString(mapReply));
         sb.append(makeStrikeString(mapReply));
@@ -21,13 +21,13 @@ public class StringReplyService {
 
     private String makeBallString(Map<PlayResult, Integer> mapReply) {
         if (mapReply.get(BALL) != 0) {
-            return mapReply.get(BALL).toString() + BALL + " ";
+            return mapReply.get(BALL).toString() + BALL.getPlayResult() + " ";
         }
         return "";
     }
     private String makeStrikeString(Map<PlayResult, Integer> mapReply) {
         if (mapReply.get(STRIKE) != 0) {
-            return mapReply.get(STRIKE).toString() + STRIKE;
+            return mapReply.get(STRIKE).toString() + STRIKE.getPlayResult();
         }
         return "";
     }
