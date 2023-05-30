@@ -25,7 +25,6 @@ public class GameController {
             answerNumbers = gameService.setComputerNumbers();
             // 게임 시작 문구
             System.out.println(GameMessage.GAME_START_MESSAGE.getGameMessage());
-
             // 게임 시작
             startGame();
         } while (isGameRunning);
@@ -35,7 +34,7 @@ public class GameController {
     public void startGame() {
         while(true) {
             // 사용자 번호 입력 (검증)
-            System.out.println(GameMessage.INPUT_NUMBER_MESSAGE.getGameMessage());
+            System.out.print(GameMessage.INPUT_NUMBER_MESSAGE.getGameMessage());
             String inputNumbers = gameService.validateInputNumber(Console.readLine());
             // 결과 도출
             GameResult gameResult = gameService.outputGameResult(inputNumbers, answerNumbers);
@@ -48,5 +47,4 @@ public class GameController {
             }
         }
     }
-
 }
