@@ -4,15 +4,12 @@ import baseball.PlayResult;
 
 import java.util.Map;
 
-import static baseball.PlayResult.*;
-import static baseball.PlayResult.STRIKE;
-
 public class StringReplyService {
 
     public String makeStringReply(Map<PlayResult, Integer> mapReply) {
         StringBuilder sb = new StringBuilder();
-        if (mapReply.containsKey(NOTHING)) {
-            return NOTHING.getPlayResult();
+        if (mapReply.containsKey(PlayResult.NOTHING)) {
+            return PlayResult.NOTHING.getPlayResult();
         }
         sb.append(makeBallString(mapReply));
         sb.append(makeStrikeString(mapReply));
@@ -20,14 +17,14 @@ public class StringReplyService {
     }
 
     private String makeBallString(Map<PlayResult, Integer> mapReply) {
-        if (mapReply.get(BALL) != 0) {
-            return mapReply.get(BALL).toString() + BALL.getPlayResult() + " ";
+        if (mapReply.get(PlayResult.BALL) != 0) {
+            return mapReply.get(PlayResult.BALL).toString() + PlayResult.BALL.getPlayResult() + " ";
         }
         return "";
     }
     private String makeStrikeString(Map<PlayResult, Integer> mapReply) {
-        if (mapReply.get(STRIKE) != 0) {
-            return mapReply.get(STRIKE).toString() + STRIKE.getPlayResult();
+        if (mapReply.get(PlayResult.STRIKE) != 0) {
+            return mapReply.get(PlayResult.STRIKE).toString() + PlayResult.STRIKE.getPlayResult();
         }
         return "";
     }

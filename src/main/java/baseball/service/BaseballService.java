@@ -1,7 +1,7 @@
 package baseball.service;
 
 import baseball.PlayResult;
-import baseball.exception.ServiceException;
+import baseball.exception.InputValidator;
 import baseball.repository.AnswerRepository;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import static baseball.PlayResult.*;
 
 public class BaseballService {
 
-    private final ServiceException serviceException = new ServiceException();
+    private final InputValidator inputValidator = new InputValidator();
     private final AnswerRepository answerRepository = new AnswerRepository();
 
 
     public List<Integer> makeUserAnswer(String userAnswer) {
-        serviceException.correctUserAnswer(userAnswer);
+        inputValidator.correctUserAnswer(userAnswer);
         return answerRepository.setUerAnswer(userAnswer);
     }
 

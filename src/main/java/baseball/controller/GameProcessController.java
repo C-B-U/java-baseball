@@ -6,7 +6,7 @@ import baseball.service.StringReplyService;
 
 import java.util.Map;
 
-import static baseball.PlayResult.STRIKE;
+
 
 public class GameProcessController {
     private final InputController inputController;
@@ -37,7 +37,7 @@ public class GameProcessController {
     public void checkCorrect() {
         Map<PlayResult, Integer> result = baseballService.makeReply();
         System.out.println(stringReplyService.makeStringReply(result));
-        if (result.containsKey(STRIKE) && result.get(STRIKE).equals(3)) {
+        if (result.containsKey(PlayResult.STRIKE) && result.get(PlayResult.STRIKE).equals(3)) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             continueGame();
             return;
