@@ -25,12 +25,12 @@ public class GameController {
             // 게임 시작 문구
             System.out.println(GameMessage.GAME_START_MESSAGE.getGameMessage());
             // 게임 시작
-            isGameRunning = startGame(isGameRunning);
+            isGameRunning = isGameStarting(isGameRunning);
         } while (isGameRunning);
     }
 
     // 게임 시작
-    private boolean startGame(boolean isGameRunning) {
+    private boolean isGameStarting(boolean isGameRunning) {
         while(true) {
             // 사용자 번호 입력 (검증)
             System.out.print(GameMessage.INPUT_NUMBER_MESSAGE.getGameMessage());
@@ -39,11 +39,15 @@ public class GameController {
             GameResult gameResult = gameService.outputGameResult(inputNumbers, answerNumbers);
             GameResult.gameResultMessage(gameResult);
             if (gameResult.isGameSuccess()) {
-                System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getGameMessage());
-                System.out.println(GameMessage.GAME_RESTART_MESSAGE.getGameMessage());
-                isGameRunning = gameService.isRestartGame(Console.readLine());
-                return isGameRunning;
+                return isGameRestart(isGameRunning);
             }
         }
+    }
+
+    private boolean isGameRestart(boolean isGameRunning) {
+        System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getGameMessage());
+        System.out.println(GameMessage.GAME_RESTART_MESSAGE.getGameMessage());
+        isGameRunning = gameService.isRestartGame(Console.readLine());
+        return isGameRunning;
     }
 }
