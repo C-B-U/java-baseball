@@ -7,10 +7,10 @@ import baseball.repository.AnswerRepository;
 import java.util.List;
 import java.util.Map;
 
-import static baseball.PlayResult.*;
 
 
 public class BaseballService {
+
 
     private final InputValidator inputValidator = new InputValidator();
     private final AnswerRepository answerRepository = new AnswerRepository();
@@ -49,11 +49,11 @@ public class BaseballService {
         return cnt;
     }
 
-    private Map<PlayResult, Integer> makeMapReply(int strikeCnt, int ballCnt) {
-        if (ballCnt == 0) {
-            return Map.of(NOTHING, 0);
+    private Map<PlayResult, Integer> makeMapReply(int strikeCnt, int ballTotalCnt) {
+        if (ballTotalCnt == 0) {
+            return Map.of(PlayResult.NOTHING, 0);
         }
-        ballCnt -= strikeCnt;
-        return Map.of(BALL, ballCnt, STRIKE, strikeCnt);
+        ballTotalCnt -= strikeCnt;
+        return Map.of(PlayResult.BALL, ballTotalCnt, PlayResult.STRIKE, strikeCnt);
     }
 }
