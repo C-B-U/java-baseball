@@ -10,8 +10,6 @@ import java.util.List;
 public class GameController {
 
     private final GameService gameService;
-    private List<Integer> answerNumbers;
-
     public GameController() {
         this.gameService = new GameService();
     }
@@ -21,16 +19,16 @@ public class GameController {
         boolean isGameRunning = true;
         do {
             // 컴퓨터 번호 설정
-            answerNumbers = gameService.setComputerNumbers();
+            List<Integer> answerNumbers = gameService.setComputerNumbers();
             // 게임 시작 문구
             System.out.println(GameMessage.GAME_START_MESSAGE.getGameMessage());
             // 게임 시작
-            isGameRunning = isGameStarting(isGameRunning);
+            isGameRunning = isGameStarting(isGameRunning, answerNumbers);
         } while (isGameRunning);
     }
 
     // 게임 시작
-    private boolean isGameStarting(boolean isGameRunning) {
+    private boolean isGameStarting(boolean isGameRunning, List<Integer> answerNumbers) {
         while(true) {
             // 사용자 번호 입력 (검증)
             System.out.print(GameMessage.INPUT_NUMBER_MESSAGE.getGameMessage());
