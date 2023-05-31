@@ -1,7 +1,14 @@
 package baseball;
 
+
 public class Application {
+
+    Computer computer = new Computer();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        // 게임 시작
+        BaseballGame baseball = new BaseballGame();
+        baseball.gameStart();
+
     }
 }
+
