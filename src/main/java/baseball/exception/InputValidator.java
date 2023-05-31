@@ -1,6 +1,6 @@
 package baseball.exception;
 
-public class ServiceException {
+public class InputValidator {
 
     public void correctUserAnswer(String userAnswer) {
         lengthOfUserAnswer(userAnswer);
