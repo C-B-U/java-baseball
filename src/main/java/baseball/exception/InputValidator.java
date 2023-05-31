@@ -14,11 +14,6 @@ public class InputValidator {
     }
 
     private void integerValue(String userAnswer) {
-        try {
-            Integer.parseInt(userAnswer);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
+        userAnswer.matches("[0-9]+");
     }
-
 }
