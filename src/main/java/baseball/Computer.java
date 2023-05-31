@@ -24,6 +24,25 @@ public class Computer {
         System.out.println(computerNumber);
     }
 
+    public String compareWithUserNumber(String number) {
+        int ball = 0;
+        int strike = 0;
+        List<Integer> userNumber = userNumberToList(number);
+
+        for (int i = 0; i < userNumber.size(); i++) {
+            if (Objects.equals(userNumber.get(i), computerNumber.get(i))) {
+                strike++;
+                continue;
+            }
+
+            if (computerNumber.contains(userNumber.get(i))) {
+                ball++;
+            }
+        }
+
+        return makeString(ball, strike);
+    }
+
     private List<Integer> userNumberToList(String userNumber) {
         List<Integer> numbers = new ArrayList<>();
         for (int length = 0; length < userNumber.length(); length++) {
@@ -31,5 +50,17 @@ public class Computer {
         }
         return numbers;
     }
-    
+
+    private String makeString(int ball, int strike) {
+        if (ball == 0 && strike == 0) {
+            return NONE;
+        }
+        if (ball == 0) {
+            return strike + STRIKE;
+        }
+        if (strike == 0) {
+            return ball + BALL;
+        }
+        return ball + BALL + " " + strike + STRIKE;
+    }
 }
