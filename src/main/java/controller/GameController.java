@@ -11,7 +11,6 @@ public class GameController {
 
     private final GameService gameService;
     private List<Integer> answerNumbers;
-    private boolean isGameRunning;
 
     public GameController() {
         this.gameService = new GameService();
@@ -19,19 +18,19 @@ public class GameController {
 
     // 게임 세팅
     public void settingGame() {
-        isGameRunning = true;
+        boolean isGameRunning = true;
         do {
             // 컴퓨터 번호 설정
             answerNumbers = gameService.setComputerNumbers();
             // 게임 시작 문구
             System.out.println(GameMessage.GAME_START_MESSAGE.getGameMessage());
             // 게임 시작
-            startGame();
+            isGameRunning = startGame(isGameRunning);
         } while (isGameRunning);
     }
 
     // 게임 시작
-    public void startGame() {
+    private boolean startGame(boolean isGameRunning) {
         while(true) {
             // 사용자 번호 입력 (검증)
             System.out.print(GameMessage.INPUT_NUMBER_MESSAGE.getGameMessage());
@@ -43,7 +42,7 @@ public class GameController {
                 System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getGameMessage());
                 System.out.println(GameMessage.GAME_RESTART_MESSAGE.getGameMessage());
                 isGameRunning = gameService.isRestartGame(Console.readLine());
-                break;
+                return isGameRunning;
             }
         }
     }
