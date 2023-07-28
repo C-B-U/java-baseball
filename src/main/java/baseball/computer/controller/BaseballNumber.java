@@ -21,6 +21,7 @@ public class BaseballNumber {
         boolean startGame = true;
         while (startGame){
             String strikeAndBallToString = computerService.getNumberResult(user.userNumber());
+            System.out.println(strikeAndBallToString);
             startGame = checkCorrectNumber(strikeAndBallToString);
         }
 
@@ -30,8 +31,9 @@ public class BaseballNumber {
         if (strikeAndBallToString.equals(THREE_STRIKE)){
             System.out.println(THREE_STRIKE_GAME_OVER);
             System.out.println(START_GAME_OR_STOP_GAME);
+            return isRestartGame(Console.readLine());
         }
-        return isRestartGame(Console.readLine());
+        return true;
     }
 
     private boolean isRestartGame(String userStatus){
