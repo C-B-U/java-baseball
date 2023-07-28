@@ -2,10 +2,14 @@ package baseball.computer.service;
 
 public class Message {
 
-    private StringBuilder resultMessage;
+    private final StringBuilder resultMessage;
+
+    public Message() {
+        resultMessage = new StringBuilder();
+    }
+
 
     public String toString(Long strike, Long ball){
-        resultMessage = new StringBuilder();
         isNothing(strike,ball);
         isBall(ball);
         isStrike(strike);

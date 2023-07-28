@@ -3,6 +3,7 @@ package baseball.computer.repository;
 import baseball.computer.dto.StrikeAndBallDTO;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
@@ -12,6 +13,12 @@ public class ComputerRepository {
     private List<Integer> computerNumber;
     private Long strike;
     private Long ball;
+
+    public ComputerRepository() {
+        computerNumber = new ArrayList<>();
+        strike = 0L;
+        ball = 0L;
+    }
 
     public StrikeAndBallDTO getStrikeAndBallDTO(List<Integer> userNumber){
         checkBaseballStrike(userNumber);

@@ -10,8 +10,8 @@ public class GameStart {
     private final static String START_GAME_OR_STOP_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private final ComputerService computerService;
 
-    public GameStart (ComputerService computerService){
-        this.computerService = computerService;
+    public GameStart (){
+        this.computerService = new ComputerService();
     }
 
     public void gameStart(){

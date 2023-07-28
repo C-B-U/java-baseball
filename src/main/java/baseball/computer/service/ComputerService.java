@@ -10,9 +10,9 @@ public class ComputerService {
     private final ComputerRepository computerRepository;
     private final Message message;
 
-    public ComputerService(ComputerRepository computerRepository, Message message){
-        this.computerRepository = computerRepository;
-        this.message = message;
+    public ComputerService(){
+        this.computerRepository = new ComputerRepository();
+        this.message = new Message();
     }
 
     public void makeRandomNumber(){
