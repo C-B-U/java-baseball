@@ -4,13 +4,13 @@ import baseball.computer.service.ComputerService;
 import baseball.user.controller.User;
 import baseball.user.service.UserService;
 import camp.nextstep.edu.missionutils.Console;
-public class GameStart {
+public class BaseballNumber {
     private final static String THREE_STRIKE = "3스트라이크";
     private final static String THREE_STRIKE_GAME_OVER = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private final static String START_GAME_OR_STOP_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private final ComputerService computerService;
 
-    public GameStart (){
+    public BaseballNumber(){
         this.computerService = new ComputerService();
     }
 
