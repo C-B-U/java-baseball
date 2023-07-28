@@ -20,7 +20,7 @@ public class BaseballNumber {
         System.out.println("숫자 야구 게임을 시작합니다.");
         boolean startGame = true;
         while (startGame){
-            String strikeAndBallToString = computerService.getNumberResult(user.userNumber());
+            String strikeAndBallToString = computerService.getNumberResult(user.inputNumber());
             System.out.println(strikeAndBallToString);
             startGame = checkCorrectNumber(strikeAndBallToString);
         }
