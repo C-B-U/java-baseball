@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class InputValidator {
 
     private static final String CHECK_USER_NUMBER = "숫자야구는 중복 안 되는 3글자 입니다.";
+    private static final int USER_NUMBER_SiZE = 3;
 
     public String validateUserNumberCorrect(String userNumber){
         validateUserNumberSize(andDuplicate(userNumber));
@@ -13,7 +14,7 @@ public class InputValidator {
     }
 
     private void validateUserNumberSize(Set<Character> userNumber){
-        if(userNumber.size() != 3){
+        if(userNumber.size() != USER_NUMBER_SiZE){
             throw new IllegalArgumentException(CHECK_USER_NUMBER);
         }
     }
