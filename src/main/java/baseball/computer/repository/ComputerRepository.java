@@ -38,7 +38,7 @@ public class ComputerRepository {
         }
     }
 
-    public void checkBaseballStrike(List<Integer> userNumber){
+    private void checkBaseballStrike(List<Integer> userNumber){
         strike = IntStream.range(0, userNumber.size())
                 .filter(i -> isStrike(userNumber.get(i), computerNumber.get(i)))
                 .count();
@@ -48,7 +48,7 @@ public class ComputerRepository {
         return userNumber == computerNumber;
     }
 
-    public void checkBaseballBall(List<Integer> userNumber){
+    private void checkBaseballBall(List<Integer> userNumber){
         ball = IntStream.range(0, userNumber.size())
                 .filter(isBall(userNumber))
                 .count();
