@@ -8,11 +8,11 @@ import java.util.List;
 public class ComputerService {
 
     private final ComputerRepository computerRepository;
-    private final Message message;
+    private final ResultMessage message;
 
     public ComputerService(){
         this.computerRepository = new ComputerRepository();
-        this.message = new Message();
+        this.message = new ResultMessage();
     }
 
     public void makeRandomNumber(){

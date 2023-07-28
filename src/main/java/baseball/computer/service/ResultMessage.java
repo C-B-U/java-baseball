@@ -1,10 +1,10 @@
 package baseball.computer.service;
 
-public class Message {
+public class ResultMessage {
 
     private StringBuilder resultMessage;
 
-    public Message() {
+    public ResultMessage() {
         resultMessage = null;
     }
 
