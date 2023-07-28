@@ -16,7 +16,7 @@ public class User {
 
     public List<Integer> userNumber(){
         InputValidator inputValidator = new InputValidator();
-        System.out.println("숫자를 입력해주세요 : ");
+        System.out.print("숫자를 입력해주세요 : ");
         String userNumber = inputValidator.validateUserNumberCorrect(Console.readLine());
         return userService.userNumberIntegerList(userNumber);
     }
