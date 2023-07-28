@@ -2,6 +2,7 @@ package baseball.computer.service;
 
 public class ResultMessage {
 
+    private final static int NO_EVENT = 0;
     private StringBuilder resultMessage;
 
     public ResultMessage() {
@@ -18,21 +19,21 @@ public class ResultMessage {
     }
 
     private void isBall(Long ball){
-        if (ball != 0){
+        if (ball != NO_EVENT){
             resultMessage.append(ball);
             resultMessage.append(BaseballMessage.BALL);
         }
     }
 
     private void isStrike(Long strike){
-        if(strike != 0){
+        if(strike != NO_EVENT){
             resultMessage.append(strike);
             resultMessage.append(BaseballMessage.STRIKE);
         }
     }
 
     private void isNothing(Long strike, Long ball){
-        if(strike == 0 && ball == 0){
+        if(strike == NO_EVENT && ball == NO_EVENT){
             resultMessage.append(BaseballMessage.NOTHING);
         }
     }
