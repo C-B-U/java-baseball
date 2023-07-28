@@ -20,20 +20,20 @@ public class Message {
     private void isBall(Long ball){
         if (ball != 0){
             resultMessage.append(ball);
-            resultMessage.append("볼 ");
+            resultMessage.append(BaseballMessage.BALL);
         }
     }
 
     private void isStrike(Long strike){
         if(strike != 0){
             resultMessage.append(strike);
-            resultMessage.append("스트라이크");
+            resultMessage.append(BaseballMessage.STRIKE);
         }
     }
 
     private void isNothing(Long strike, Long ball){
         if(strike == 0 && ball == 0){
-            resultMessage.append("낫싱");
+            resultMessage.append(BaseballMessage.NOTHING);
         }
     }
 }
