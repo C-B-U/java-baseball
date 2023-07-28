@@ -10,12 +10,14 @@ import java.util.stream.IntStream;
 
 public class ComputerRepository {
 
+    private static final int COMPUTER_NUMBER_SiZE = 3;
+
     private List<Integer> computerNumber;
     private Long strike;
     private Long ball;
 
     public ComputerRepository() {
-        computerNumber = new ArrayList<>();
+        computerNumber = null;
         strike = 0L;
         ball = 0L;
     }
@@ -27,7 +29,13 @@ public class ComputerRepository {
     }
 
     public void makeRandomNumber() {
-        computerNumber = Randoms.pickUniqueNumbersInRange(1, 9, 3);
+        computerNumber = new ArrayList<>();
+        while (computerNumber.size() < COMPUTER_NUMBER_SiZE) {
+            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            if (!computerNumber.contains(randomNumber)) {
+                computerNumber.add(randomNumber);
+            }
+        }
     }
 
     public void checkBaseballStrike(List<Integer> userNumber){
