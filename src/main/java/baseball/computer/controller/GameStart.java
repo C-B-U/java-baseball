@@ -15,8 +15,8 @@ public class GameStart {
 
     public void gameStart(){
         User user = new User(new UserService());
-        computerService.makeRandomNumber();
-        user.userNumber();
+        System.out.println("숫자 야구 게임을 시작합니다.");
+        computerService.getNumberResult(user.userNumber());
     }
 
 

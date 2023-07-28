@@ -1,14 +1,24 @@
 package baseball.computer.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import baseball.computer.dto.StrikeAndBallDTO;
+import baseball.computer.repository.ComputerRepository;
 
 import java.util.List;
 
 public class ComputerService {
 
-    private List<Integer> computerNumber;
+    private final ComputerRepository computerRepository;
+
+    public ComputerService(ComputerRepository computerRepository){
+        this.computerRepository = computerRepository;
+    }
 
     public void makeRandomNumber(){
-        computerNumber = Randoms.pickUniqueNumbersInRange(1,9,3);
+        computerRepository.makeRandomNumber();
     }
+
+    public void getNumberResult(List<Integer> userNumber){
+        StrikeAndBallDTO strikeAndBall =  computerRepository.getStrikeAndBallDTO(userNumber);
+    }
+
 }
