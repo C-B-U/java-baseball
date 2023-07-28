@@ -37,7 +37,11 @@ public class BaseballNumber {
     }
 
     private boolean isRestartGame(String userStatus){
-        return userStatus.equals("1");
+        if (userStatus.equals("1")){
+            computerService.makeRandomNumber();
+            return true;
+        }
+        return false;
     }
 
 
