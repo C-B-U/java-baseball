@@ -21,6 +21,10 @@
 ### BaseballController - 정답 관련 요청과 입력 검증을 담당
 - (startGame) 하나의 게임 실행
 - (validateUserAttempt) 유저의 시도 마다 입력값 검증
+- (printGameMessage) 게임 메시지 출력
+- (playGame) 게임 메인 로직 실행
+- (getResult) 결과 계산 로직 실행
+- (getUserAttempt) 유저의 정답 시도 입력
 
 ### BaseballService - 정답 관련 서비스 로직 담당
 - (saveAnswer) 정답을 생성하여 저장

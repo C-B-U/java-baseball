@@ -12,23 +12,39 @@ public class BaseballController {
     }
 
     public void startGame() {
-        System.out.println(GameMessage.GAME_START.getMessage());
+        printGameMessage(GameMessage.GAME_START.getMessage());
         baseballService.saveAnswer();
+        playGame();
+    }
 
+    private void playGame() {
         boolean isContinue = Boolean.TRUE;
         while(isContinue) {
-            System.out.print(GameMessage.INPUT_NEXT_NUMBER.getMessage());
-            final String userAttempt = Console.readLine();
-            validateUserAttempt(userAttempt);
-
-            final BallCount result = baseballService.calculateResult(userAttempt);
-            System.out.println(result.getMessage());
+            final String userAttempt = getUserAttempt();
+            final BallCount result = getResult(userAttempt);
 
             if (result == BallCount.THREE_STRIKE) {
-                System.out.println(GameMessage.GAME_FINISH.getMessage());
+                printGameMessage(GameMessage.GAME_FINISH.getMessage());
                 isContinue = Boolean.FALSE;
             }
         }
+    }
+
+    private String getUserAttempt() {
+        printGameMessage(GameMessage.INPUT_NEXT_NUMBER.getMessage());
+        final String userAttempt = Console.readLine();
+        validateUserAttempt(userAttempt);
+        return userAttempt;
+    }
+
+    private BallCount getResult(String userAttempt) {
+        final BallCount result = baseballService.calculateResult(userAttempt);
+        printGameMessage(result.getMessage());
+        return result;
+    }
+
+    private void printGameMessage(final String message) {
+        System.out.println(message);
     }
 
     private void validateUserAttempt(final String userAttempt) {

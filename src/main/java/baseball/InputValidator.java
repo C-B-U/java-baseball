@@ -2,6 +2,10 @@ package baseball;
 
 public class InputValidator {
     private static final String NUMERIC_MATCHER = "-?\\d+";
+    private static final Integer IS_CONTINUE_LENGTH = 1;
+    private static final Integer CONTINUE = 1;
+    private static final Integer NOT_CONTINUE = 1;
+
 
     public void validateUserAttempt(final String userAttempt) {
         if (notValidAttemptString(userAttempt) || hasDuplicate(userAttempt)) {
@@ -10,7 +14,9 @@ public class InputValidator {
     }
 
     private boolean notValidAttemptString(final String userAttempt) {
-        return userAttempt.isBlank() || !userAttempt.matches(NUMERIC_MATCHER) || userAttempt.length() != 3;
+        return userAttempt.isBlank()
+                || !userAttempt.matches(NUMERIC_MATCHER)
+                || userAttempt.length() != RandomNumberRange.CIPHER.getNum();
     }
 
     private boolean hasDuplicate(final String userAttempt) {
@@ -25,11 +31,13 @@ public class InputValidator {
     }
 
     private boolean notValidIsContinueString(final String isContinueInput) {
-        return isContinueInput.isBlank() || !isContinueInput.matches(NUMERIC_MATCHER) || isContinueInput.length() != 1;
+        return isContinueInput.isBlank()
+                || !isContinueInput.matches(NUMERIC_MATCHER)
+                || isContinueInput.length() != IS_CONTINUE_LENGTH;
     }
 
     private boolean isOutOfRange(final String isContinueInput) {
         final int input = Integer.parseInt(isContinueInput);
-        return input != 1 && input != 2;
+        return input != CONTINUE && input != NOT_CONTINUE;
     }
 }
