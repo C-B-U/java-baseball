@@ -19,11 +19,6 @@ public class OutputView {
         System.out.println(message.getMessage());
     }
 
-    public void printRestartMessage() {
-        Message message = Message.RESTART_MESSAGE;
-        System.out.println(message.getMessage());
-    }
-
     public void printGameResult(Map<BallStatus, Integer> result) {
         System.out.println(getBallStatusMessage(result));
     }

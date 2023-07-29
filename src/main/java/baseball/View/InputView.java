@@ -17,4 +17,11 @@ public class InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public Integer readRestartInput() {
+        Message message = Message.RESTART_MESSAGE;
+        System.out.println(message.getMessage());
+        String userInput = Console.readLine();
+        return Integer.valueOf(userInput);
+    }
 }

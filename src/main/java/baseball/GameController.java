@@ -13,6 +13,7 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final static Integer RESTART = 1;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,9 +21,13 @@ public class GameController {
     }
 
     public void start() {
+        boolean isProgress = true;
         outputView.printStartMessage();
-        Computer computer = new Computer();
-        playUntilThreeStrikes(computer);
+        while (isProgress) {
+            Computer computer = new Computer();
+            playUntilThreeStrikes(computer);
+            isProgress = restartOrEnd();
+        }
     }
 
     private void playUntilThreeStrikes(Computer computer) {
@@ -37,5 +42,9 @@ public class GameController {
                 isNotThreeStrike = false;
             }
         }
+    }
+
+    private boolean restartOrEnd() {
+        return inputView.readRestartInput() == RESTART;
     }
 }
