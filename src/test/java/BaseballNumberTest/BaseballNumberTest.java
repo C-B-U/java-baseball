@@ -12,12 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BaseballNumberTest {
 
     InputValidator inputValidator = new InputValidator();
+    private static final String CHECK_USER_NUMBER = "숫자야구는 중복 안 되는 3글자 입니다.";
 
     @Test
     @DisplayName("4글자 이상 숫자를 입력했을 때")
     void inputOverThreeNumber(){
         Exception exception = assertThrows(IllegalArgumentException.class,
                 () ->  inputValidator.validateUserNumberCorrect("1234"));
-        assertEquals("숫자야구는 중복 안 되는 3글자 입니다.", exception.getMessage());
+        assertEquals(CHECK_USER_NUMBER, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 문자열을 입력했을 때")
+    void inputNotNumber(){
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> inputValidator.validateUserNumberCorrect("박준수"));
+        assertEquals(CHECK_USER_NUMBER, exception.getMessage());
     }
 }

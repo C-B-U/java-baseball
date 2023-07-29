@@ -22,6 +22,7 @@ public class InputValidator {
     private Set<Character> andDuplicate(String userNumber) {
         return userNumber.chars()
                 .mapToObj(c -> (char)c)
+                .filter(Character::isDigit)
                 .collect(Collectors.toSet());
     }
 }
