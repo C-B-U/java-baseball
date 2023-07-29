@@ -50,4 +50,8 @@ public class StrikeAndBallCount {
         int userNumber = user.getByPosition(position);
         return computerNumber == userNumber;
     }
+
+    public boolean isThreeStrike(Map<BallStatus, Integer> map) {
+        return map.getOrDefault(BallStatus.STRIKE, 0) == 3;
+    }
 }
