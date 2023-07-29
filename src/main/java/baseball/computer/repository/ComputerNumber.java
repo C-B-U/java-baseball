@@ -9,21 +9,10 @@ import java.util.stream.IntStream;
 
 public class ComputerNumber {
 
-    private static final int COMPUTER_NUMBER_SiZE = 3;
-    private List<Integer> randomNumbers;
+    private final List<Integer> randomNumbers;
 
-    ComputerNumber(){
-        this.randomNumbers = null;
-    }
-
-    public void makeRandomNumber() {
-        randomNumbers = new ArrayList<>();
-        while (randomNumbers.size() < COMPUTER_NUMBER_SiZE) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!randomNumbers.contains(randomNumber)) {
-                randomNumbers.add(randomNumber);
-            }
-        }
+    public ComputerNumber(List<Integer> randomNumbers){
+        this.randomNumbers = randomNumbers;
     }
 
     public Long checkBaseballStrike(List<Integer> userNumber){

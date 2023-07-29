@@ -1,16 +1,19 @@
 package baseball.computer.repository;
 
 import baseball.computer.dto.StrikeAndBallDTO;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerRepository {
-
-    private final ComputerNumber computerNumber;
+    private static final int COMPUTER_NUMBER_SiZE = 3;
+    private ComputerNumber computerNumber;
     private Long strike;
     private Long ball;
 
     public ComputerRepository() {
-        this.computerNumber = new ComputerNumber();
+        this.computerNumber = new ComputerNumber(makeRandomNumber());
         this.strike = 0L;
         this.ball = 0L;
     }
@@ -21,8 +24,20 @@ public class ComputerRepository {
         return new StrikeAndBallDTO(strike, ball);
     }
 
-    public void makeRandomNumber() {
-        computerNumber.makeRandomNumber();
+    public List<Integer> makeRandomNumber() {
+        List<Integer> randomNumbers = new ArrayList<>();
+        while (randomNumbers.size() < COMPUTER_NUMBER_SiZE) {
+            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            if (!randomNumbers.contains(randomNumber)) {
+                randomNumbers.add(randomNumber);
+            }
+        }
+        return randomNumbers;
     }
+
+    public void remakeComputerNumber(){
+        this.computerNumber = new ComputerNumber(makeRandomNumber());
+    }
+
 
 }

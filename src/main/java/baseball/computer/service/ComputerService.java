@@ -15,8 +15,8 @@ public class ComputerService {
         this.message = new ResultMessage();
     }
 
-    public void makeRandomNumber(){
-        computerRepository.makeRandomNumber();
+    public void remakeRandomNumber(){
+        computerRepository.remakeComputerNumber();
     }
 
     public String getNumberResult(List<Integer> userNumber){
