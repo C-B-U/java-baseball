@@ -26,4 +26,8 @@ public final class Answer {
     public static Answer createAnswer() {
         return new Answer();
     }
+
+    public boolean hasNum(final int attemptNum) {
+        return currentAnswer.contains(attemptNum);
+    }
 }

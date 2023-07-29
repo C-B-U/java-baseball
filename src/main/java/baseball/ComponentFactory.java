@@ -14,7 +14,7 @@ public class ComponentFactory {
         return new BaseballRepository();
     }
 
-    private UserAttemptValidator userAttemptValidator() {
-        return new UserAttemptValidator();
+    private InputValidator userAttemptValidator() {
+        return new InputValidator();
     }
 }

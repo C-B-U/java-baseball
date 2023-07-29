@@ -4,8 +4,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ResultProvider {
-    private final CountProvider strikeCountProvider = s -> s.filter(i -> i == StrikeBall.STRIKE).mapToInt(i -> 1).sum();
-    private final CountProvider ballCountProvider = s -> s.filter(i -> i == StrikeBall.BALL).mapToInt(i -> 1).sum();
+    private final CountProvider strikeCountProvider = s -> Long.valueOf(s.filter(i -> i == StrikeBall.STRIKE).count()).intValue();
+    private final CountProvider ballCountProvider = s -> Long.valueOf(s.filter(i -> i == StrikeBall.BALL).count()).intValue();
     private final Answer answer;
     private final String attempt;
 
@@ -14,11 +14,10 @@ public class ResultProvider {
         this.attempt = attempt;
     }
 
-    public String getResult() {
-        final Stream<StrikeBall> strikeBallStream = getStrikeBallStream();
-        final Integer strikeNum = countOfStrikeBall(strikeCountProvider, strikeBallStream);
-        final Integer ballNum = countOfStrikeBall(ballCountProvider, strikeBallStream);
-        return BallCount.findMessageByStrikeNum(ballNum, strikeNum);
+    public BallCount getResult() {
+        final Integer strikeNum = countOfStrikeBall(strikeCountProvider, getStrikeBallStream());
+        final Integer ballNum = countOfStrikeBall(ballCountProvider, getStrikeBallStream());
+        return BallCount.ofStrikeAndBallNum(ballNum, strikeNum);
     }
 
     private Integer countOfStrikeBall(final CountProvider countProvider, final Stream<StrikeBall> strikeBallStream) {
@@ -34,14 +33,14 @@ public class ResultProvider {
     }
 
     private StrikeBall matches(final int answerNum, final int attemptNum, final int index) {
-        if (answerNum == attemptNum && answerNum == index) {
+        if (answerNum == attemptNum && attemptNum == findAnswerNumByIndex(index)) {
             return StrikeBall.STRIKE;
         }
-        return checkBallOrNone(answerNum, attemptNum);
+        return checkBallOrNone(attemptNum);
     }
 
-    private StrikeBall checkBallOrNone(final int answerNum, final int attemptNum) {
-        if (answerNum == attemptNum) {
+    private StrikeBall checkBallOrNone(final int attemptNum) {
+        if (answer.hasNum(attemptNum)) {
             return StrikeBall.BALL;
         }
         return StrikeBall.NONE;

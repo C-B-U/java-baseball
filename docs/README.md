@@ -16,6 +16,7 @@
 
 ### Application - 실행을 담당
 - (main) 어플리케이션의 실행
+- (askContinue) 게임 종료 후 계속 진행 여부를 묻는 메서드
 
 ### BaseballController - 정답 관련 요청과 입력 검증을 담당
 - (startGame) 하나의 게임 실행
@@ -23,21 +24,25 @@
 
 ### BaseballService - 정답 관련 서비스 로직 담당
 - (saveAnswer) 정답을 생성하여 저장
+- (calculateResult) 결과를 계산
+- (findCurrentAnswer) 현재 정답 정보를 조회
 
 ### BaseballRepository - 정답 정보 저장, 조회를 담당
 - (saveAnswer) 정답 저장
+- (findCurrentAnswer) 현재 정답 정보를 조회
 
 ### Answer - 정답 정보를 가진 불변클래스
 - (generateRandomNumbers) 랜덤한 숫자를 생성
 - (createAnswer) 불변클래스의 팩토리 메서드
+- (hasNum) 매개변수로 받는 숫자가 정답에 포함됐는지 확인
 
 ### ComponentFactory - 컴포넌트들의 생성을 담당
 - (baseballController) baseballController 생성
 - (baseballService) baseballService 생성
 - (baseballRepository) baseballRepository 생성
-- (userAttemptValidator) userAttemptValidator 생성
+- (inputValidator) inputValidator 생성
 
-### UserAttemptValidator - 유저의 시도에 대한 입력값 검증
+### InputValidator - 유저의 시도에 대한 입력값 검증
 - (validate) 유저의 시도에 대한 입력값 검증
 - (notValidString) 입력 String 이 유효한지 검증
 

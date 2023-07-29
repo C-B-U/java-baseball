@@ -5,4 +5,8 @@ public class BaseballRepository {
     public void saveAnswer(final Answer answer) {
         this.answer = answer;
     }
+
+    public Answer findCurrentAnswer() {
+        return answer;
+    }
 }

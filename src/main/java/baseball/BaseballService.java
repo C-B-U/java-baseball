@@ -11,4 +11,14 @@ public class BaseballService {
         final Answer answer = Answer.createAnswer();
         baseballRepository.saveAnswer(answer);
     }
+
+    public BallCount calculateResult(String attempt) {
+        final Answer currentAnswer = findCurrentAnswer();
+        final ResultProvider resultProvider = new ResultProvider(currentAnswer, attempt);
+        return resultProvider.getResult();
+    }
+
+    private Answer findCurrentAnswer() {
+        return baseballRepository.findCurrentAnswer();
+    }
 }
