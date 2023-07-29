@@ -14,11 +14,37 @@
 
 ## 구현 클래스 명세
 
-### Application
+### Application - 실행을 담당
 - (main) 어플리케이션의 실행
 
-### BaseballController
+### BaseballController - 정답 관련 요청과 입력 검증을 담당
+- (startGame) 하나의 게임 실행
+- (validateUserAttempt) 유저의 시도 마다 입력값 검증
 
-### BaseballService
+### BaseballService - 정답 관련 서비스 로직 담당
+- (saveAnswer) 정답을 생성하여 저장
 
-### BaseballRepository
+### BaseballRepository - 정답 정보 저장, 조회를 담당
+- (saveAnswer) 정답 저장
+
+### Answer - 정답 정보를 가진 불변클래스
+- (generateRandomNumbers) 랜덤한 숫자를 생성
+- (createAnswer) 불변클래스의 팩토리 메서드
+
+### ComponentFactory - 컴포넌트들의 생성을 담당
+- (baseballController) baseballController 생성
+- (baseballService) baseballService 생성
+- (baseballRepository) baseballRepository 생성
+- (userAttemptValidator) userAttemptValidator 생성
+
+### UserAttemptValidator - 유저의 시도에 대한 입력값 검증
+- (validate) 유저의 시도에 대한 입력값 검증
+- (notValidString) 입력 String 이 유효한지 검증
+
+## 구현 열거형 명세
+
+### GameMessage
+- 게임의 메시지들을 나타낸다.
+
+### RandomNumberRange
+- 랜덤한 숫자의 범위, 자릿수를 나타낸다.
