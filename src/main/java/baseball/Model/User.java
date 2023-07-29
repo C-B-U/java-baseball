@@ -13,4 +13,8 @@ public class User {
     public List<Integer> getUserInputNumber() {
         return inputNumbers;
     }
+
+    public int getByPosition(int position) {
+        return inputNumbers.get(position);
+    }
 }

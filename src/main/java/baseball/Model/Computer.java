@@ -35,4 +35,8 @@ public class Computer {
     public List<Integer> getRandomNumbers() {
         return randomNumbers;
     }
+
+    public int getByPosition(int position) {
+        return randomNumbers.get(position);
+    }
 }
