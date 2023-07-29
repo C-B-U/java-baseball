@@ -34,9 +34,9 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         int strikeCount = result.getOrDefault(BallStatus.STRIKE, 0);
         int ballCount = result.getOrDefault(BallStatus.BALL, 0);
-        appendStrikeMessage(strikeCount, stringBuilder);
-        appendSpaceBetweenStrikeAndBallMessage(strikeCount, ballCount, stringBuilder);
         appendBallMessage(ballCount, stringBuilder);
+        appendSpaceBetweenStrikeAndBallMessage(strikeCount, ballCount, stringBuilder);
+        appendStrikeMessage(strikeCount, stringBuilder);
         return stringBuilder.toString();
     }
 
