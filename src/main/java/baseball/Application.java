@@ -1,11 +1,11 @@
 package baseball;
 
 import baseball.View.InputView;
+import baseball.View.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        GameController gameController = new GameController(inputView);
+        GameController gameController = new GameController(new InputView(), new OutputView());
         gameController.start();
     }
 }

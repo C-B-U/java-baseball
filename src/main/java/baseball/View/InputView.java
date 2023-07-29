@@ -9,7 +9,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public List<Integer> readUserInput() {
-        System.out.print("숫자를 입력해주세요 : ");
+        Message message = Message.USER_INPUT_MESSAGE;
+        System.out.print(message.getMessage());
         String userInput = Console.readLine();
         String[] userInputArray = userInput.split("");
         return Arrays.stream(userInputArray)
