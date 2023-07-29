@@ -19,6 +19,10 @@ public final class Answer {
                 RandomNumberRange.CIPHER.getNum());
     }
 
+    public Integer findByIndex(final Integer index) {
+        return currentAnswer.get(index);
+    }
+
     public static Answer createAnswer() {
         return new Answer();
     }

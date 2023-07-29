@@ -41,6 +41,18 @@
 - (validate) 유저의 시도에 대한 입력값 검증
 - (notValidString) 입력 String 이 유효한지 검증
 
+### CountProvider - 스트림에서 스트라이크, 볼의 개수를 세는 함수형 인터페이스
+- (countOf) Stream<BallCount> 를 받아 Integer 를 반환
+
+### ResultProvider - Answer 객체와 유저의 입력을 받아 결과를 반환
+- (getResult) 최종 출력할 결과를 반환
+- (countOfStrikeBall) 스트라이크, 볼의 개수를 계산
+- (getStrikeBallStream) 입력값을 StrikeBall 으로 변환한 스트림을 반환
+- (matches) 입력값 한 자리를 인덱스와 함께 비교해 strike, ball 여부를 판단
+- (checkBallOrNone) 같은 인덱스에 같은 값이 없는 경우 ball 인지 판단
+- (findAnswerNumByIndex) 정답 숫자에서 인덱스에 해당하는 숫자 반환
+- (convertToIntWithIndex) String 에서 인덱스에 해당하는 숫자를 int 로 변환
+
 ## 구현 열거형 명세
 
 ### GameMessage
@@ -48,3 +60,10 @@
 
 ### RandomNumberRange
 - 랜덤한 숫자의 범위, 자릿수를 나타낸다.
+
+### StrikeBall
+- 스트라이크, 볼을 나타낸다.
+
+### BallCount
+- 스트라이크, 볼의 개수에 따른 볼카운트를 계산한다.
+- 상황에 맞는 메시지를 갖는다.
