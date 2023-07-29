@@ -43,8 +43,11 @@
 - (inputValidator) inputValidator 생성
 
 ### InputValidator - 유저의 시도에 대한 입력값 검증
-- (validate) 유저의 시도에 대한 입력값 검증
-- (notValidString) 입력 String 이 유효한지 검증
+- (validateUserAttempt) 유저의 시도에 대한 입력값 검증
+- (notValidAttemptString) 입력 String 이 유효한지 검증
+- (hasDuplicate) 중복된 숫자가 입력되었는지 검증
+- (validateIsContinue) 계속 진행할지 여부에 대한 입력 검증
+- (notValidContinueString) 계속 진행할지 여부에 대한 입력값 검증
 
 ### CountProvider - 스트림에서 스트라이크, 볼의 개수를 세는 함수형 인터페이스
 - (countOf) Stream<BallCount> 를 받아 Integer 를 반환
@@ -53,7 +56,7 @@
 - (getResult) 최종 출력할 결과를 반환
 - (countOfStrikeBall) 스트라이크, 볼의 개수를 계산
 - (getStrikeBallStream) 입력값을 StrikeBall 으로 변환한 스트림을 반환
-- (matches) 입력값 한 자리를 인덱스와 함께 비교해 strike, ball 여부를 판단
+- (checkStrikeBall) 입력값 한 자리를 인덱스와 함께 비교해 strike, ball 여부를 판단
 - (checkBallOrNone) 같은 인덱스에 같은 값이 없는 경우 ball 인지 판단
 - (findAnswerNumByIndex) 정답 숫자에서 인덱스에 해당하는 숫자 반환
 - (convertToIntWithIndex) String 에서 인덱스에 해당하는 숫자를 int 로 변환

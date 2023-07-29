@@ -19,12 +19,17 @@ public class InputValidator {
     }
 
     public void validateIsContinue(final String isContinueInput) {
-        if (notValidIsContinueString(isContinueInput)) {
+        if (notValidIsContinueString(isContinueInput) || isOutOfRange(isContinueInput)) {
             throw new IllegalArgumentException();
         }
     }
 
     private boolean notValidIsContinueString(final String isContinueInput) {
         return isContinueInput.isBlank() || !isContinueInput.matches(NUMERIC_MATCHER) || isContinueInput.length() != 1;
+    }
+
+    private boolean isOutOfRange(final String isContinueInput) {
+        final int input = Integer.parseInt(isContinueInput);
+        return input != 1 && input != 2;
     }
 }

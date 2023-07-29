@@ -7,7 +7,7 @@ public enum RandomNumberRange {
 
     private final Integer num;
 
-    RandomNumberRange(Integer num) {
+    RandomNumberRange(final Integer num) {
         this.num = num;
     }
 

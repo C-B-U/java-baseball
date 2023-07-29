@@ -28,11 +28,11 @@ public class ResultProvider {
         return IntStream.range(0, 3).mapToObj(i -> {
             final int attemptNum = convertToIntWithIndex(i);
             final int answerNum = findAnswerNumByIndex(i);
-            return matches(answerNum, attemptNum, i);
+            return checkStrikeBall(answerNum, attemptNum, i);
         });
     }
 
-    private StrikeBall matches(final int answerNum, final int attemptNum, final int index) {
+    private StrikeBall checkStrikeBall(final int answerNum, final int attemptNum, final int index) {
         if (answerNum == attemptNum && attemptNum == findAnswerNumByIndex(index)) {
             return StrikeBall.STRIKE;
         }

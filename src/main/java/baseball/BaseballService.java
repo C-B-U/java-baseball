@@ -12,7 +12,7 @@ public class BaseballService {
         baseballRepository.saveAnswer(answer);
     }
 
-    public BallCount calculateResult(String attempt) {
+    public BallCount calculateResult(final String attempt) {
         final Answer currentAnswer = findCurrentAnswer();
         final ResultProvider resultProvider = new ResultProvider(currentAnswer, attempt);
         return resultProvider.getResult();
