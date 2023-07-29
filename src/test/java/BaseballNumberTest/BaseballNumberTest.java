@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BaseballNumberTest {
 
     InputValidator inputValidator = new InputValidator();
-    private static final String CHECK_USER_NUMBER = "숫자야구는 중복 안 되는 3글자 입니다.";
+    private static final String CHECK_USER_NUMBER = "숫자야구는 중복 안 되는 1~9 까지의 3글자 입니다.";
 
     @Test
     @DisplayName("4글자 이상 숫자를 입력했을 때")
@@ -37,4 +37,14 @@ public class BaseballNumberTest {
                 () -> inputValidator.validateUserNumberCorrect("111"));
         assertEquals(CHECK_USER_NUMBER, exception.getMessage());
     }
+
+    @Test
+    @DisplayName("0이 포함된 숫자를 입력했을 때")
+    void inputZeroInNumber(){
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> inputValidator.validateUserNumberCorrect("109"));
+        assertEquals(CHECK_USER_NUMBER, exception.getMessage());
+    }
+
+
 }
