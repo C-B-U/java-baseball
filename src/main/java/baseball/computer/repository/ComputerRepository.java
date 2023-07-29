@@ -17,9 +17,9 @@ public class ComputerRepository {
     private Long ball;
 
     public ComputerRepository() {
-        computerNumber = null;
-        strike = 0L;
-        ball = 0L;
+        this.computerNumber = null;
+        this.strike = 0L;
+        this.ball = 0L;
     }
 
     public StrikeAndBallDTO getStrikeAndBallDTO(List<Integer> userNumber){

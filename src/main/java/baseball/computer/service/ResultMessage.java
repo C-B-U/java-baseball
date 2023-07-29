@@ -6,7 +6,7 @@ public class ResultMessage {
     private StringBuilder resultMessage;
 
     public ResultMessage() {
-        resultMessage = null;
+        this.resultMessage = null;
     }
 
 
