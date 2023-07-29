@@ -29,4 +29,12 @@ public class BaseballNumberTest {
                 () -> inputValidator.validateUserNumberCorrect("박준수"));
         assertEquals(CHECK_USER_NUMBER, exception.getMessage());
     }
+
+    @Test
+    @DisplayName("중복된 숫자를 입력했을 때")
+    void inputDuplicateNumber(){
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> inputValidator.validateUserNumberCorrect("111"));
+        assertEquals(CHECK_USER_NUMBER, exception.getMessage());
+    }
 }
