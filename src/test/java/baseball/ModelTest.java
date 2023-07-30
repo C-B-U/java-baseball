@@ -1,11 +1,14 @@
 package baseball;
 
+import baseball.Model.BallStatus;
 import baseball.Model.Computer;
+import baseball.Model.StrikeAndBallCount;
 import baseball.Model.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,5 +28,17 @@ public class ModelTest {
         userInput.add(5);
         User user = new User(userInput);
         assertThat(user.getUserInputNumber()).isEqualTo(userInput);
+    }
+
+    @Test
+    void 스트라이크_확인_기능_테스트() {
+        Computer computer = new Computer();
+        List<Integer> userInput = computer.getRandomNumbers();
+        User user = new User(userInput);
+        StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(computer, user);
+
+        Map<BallStatus, Integer> result = strikeAndBallCount.calculateBallAndStrikeCount();
+
+        assertThat(strikeAndBallCount.isThreeStrike(result)).isTrue();
     }
 }
