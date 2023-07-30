@@ -1,13 +1,8 @@
 package baseball;
 
-import baseball.Model.BallStatus;
-import baseball.Model.Computer;
-import baseball.Model.StrikeAndBallCount;
-import baseball.Model.User;
+import baseball.Model.*;
 import baseball.View.InputView;
 import baseball.View.OutputView;
-
-import java.util.Map;
 
 public class GameController {
 
@@ -35,16 +30,15 @@ public class GameController {
         while(isNotThreeStrike) {
             User user = new User(inputView.readUserInput());
             StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(computer, user);
-            Map<BallStatus, Integer> result = strikeAndBallCount.calculateBallAndStrikeCount();
+            GameResult result = strikeAndBallCount.calculateBallAndStrikeCount();
             outputView.printGameResult(result);
-            if (strikeAndBallCount.isThreeStrike(result)) {
-                outputView.printThreeStrikeMessage();
-                isNotThreeStrike = false;
-            }
+            isNotThreeStrike = result.isNotThreeStrike();
         }
+        outputView.printThreeStrikeMessage();
     }
 
     private boolean restartOrEnd() {
-        return inputView.readRestartInput() == RESTART;
+        Integer userInput = inputView.readRestartInput();
+        return userInput.equals(RESTART);
     }
 }

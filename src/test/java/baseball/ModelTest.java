@@ -1,14 +1,10 @@
 package baseball;
 
-import baseball.Model.BallStatus;
-import baseball.Model.Computer;
-import baseball.Model.StrikeAndBallCount;
-import baseball.Model.User;
+import baseball.Model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,8 +33,8 @@ public class ModelTest {
         User user = new User(userInput);
         StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(computer, user);
 
-        Map<BallStatus, Integer> result = strikeAndBallCount.calculateBallAndStrikeCount();
+        GameResult result = strikeAndBallCount.calculateBallAndStrikeCount();
 
-        assertThat(strikeAndBallCount.isThreeStrike(result)).isTrue();
+        assertThat(result.isNotThreeStrike()).isTrue();
     }
 }

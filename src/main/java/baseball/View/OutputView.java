@@ -1,8 +1,7 @@
 package baseball.View;
 
 import baseball.Model.BallStatus;
-
-import java.util.Map;
+import baseball.Model.GameResult;
 
 public class OutputView {
 
@@ -19,21 +18,21 @@ public class OutputView {
         System.out.println(message.getMessage());
     }
 
-    public void printGameResult(Map<BallStatus, Integer> result) {
+    public void printGameResult(GameResult result) {
         System.out.println(getBallStatusMessage(result));
     }
 
-    private String getBallStatusMessage(Map<BallStatus, Integer> result) {
+    private String getBallStatusMessage(GameResult result) {
         if(isNoting(result)) {
             return BallStatusMessage.NOTHING.getMessage();
         }
         return ballAndStrikeCountMessage(result);
     }
 
-    private String ballAndStrikeCountMessage(Map<BallStatus, Integer> result) {
+    private String ballAndStrikeCountMessage(GameResult result) {
         StringBuilder stringBuilder = new StringBuilder();
-        int strikeCount = result.getOrDefault(BallStatus.STRIKE, 0);
-        int ballCount = result.getOrDefault(BallStatus.BALL, 0);
+        int strikeCount = result.get(BallStatus.STRIKE);
+        int ballCount = result.get(BallStatus.BALL);
         appendBallMessage(ballCount, stringBuilder);
         appendSpaceBetweenStrikeAndBallMessage(strikeCount, ballCount, stringBuilder);
         appendStrikeMessage(strikeCount, stringBuilder);
@@ -66,7 +65,7 @@ public class OutputView {
         return ballCount != NOT_EXIST;
     }
 
-    public boolean isNoting(Map<BallStatus, Integer> result) {
-        return result.getOrDefault(BallStatus.NOTHING, 0) == MAX_BALL_COUNT;
+    public boolean isNoting(GameResult result) {
+        return result.get(BallStatus.NOTHING) == MAX_BALL_COUNT;
     }
 }

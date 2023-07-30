@@ -1,8 +1,6 @@
 package baseball.Model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class StrikeAndBallCount {
 
@@ -16,12 +14,12 @@ public class StrikeAndBallCount {
         this.user = user;
     }
 
-    public Map<BallStatus, Integer> calculateBallAndStrikeCount() {
-        Map<BallStatus, Integer> result = new HashMap<>();
+    public GameResult calculateBallAndStrikeCount() {
+        GameResult result = new GameResult();
         for (int position = 0; position < NUMBERS_LENGTH; position++) {
             BallStatus ballStatus = decideBallStatus(position);
-            int ballCount = result.getOrDefault(ballStatus, 0);
-            result.put(ballStatus, ballCount+1);
+            int ballCount = result.get(ballStatus);
+            result.set(ballStatus, ballCount+1);
         }
         return result;
     }
@@ -49,9 +47,5 @@ public class StrikeAndBallCount {
         int computerNumber = computer.getByPosition(position);
         int userNumber = user.getByPosition(position);
         return computerNumber == userNumber;
-    }
-
-    public boolean isThreeStrike(Map<BallStatus, Integer> map) {
-        return map.getOrDefault(BallStatus.STRIKE, 0) == 3;
     }
 }
