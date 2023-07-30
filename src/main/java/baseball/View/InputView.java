@@ -12,16 +12,22 @@ public class InputView {
         Message message = Message.USER_INPUT_MESSAGE;
         System.out.print(message.getMessage());
         String userInput = Console.readLine();
-        String[] userInputArray = userInput.split("");
-        return Arrays.stream(userInputArray)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        InputValidator.isCorrectInput(userInput);
+        return userInputToList(userInput);
     }
 
     public Integer readRestartInput() {
         Message message = Message.RESTART_MESSAGE;
         System.out.println(message.getMessage());
         String userInput = Console.readLine();
+        InputValidator.isCorrectRestartInput(userInput);
         return Integer.valueOf(userInput);
+    }
+
+    private List<Integer> userInputToList(String userInput) {
+        String[] userInputArray = userInput.split("");
+        return Arrays.stream(userInputArray)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
