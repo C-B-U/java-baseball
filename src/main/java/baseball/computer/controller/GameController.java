@@ -6,18 +6,18 @@ import camp.nextstep.edu.missionutils.Console;
 public class GameController {
     private static final String RESTART_GAME = "1";
     private final ComputerService computerService;
-    private final UserController user;
+    private final UserController userController;
 
     public GameController(){
         this.computerService = new ComputerService();
-        this.user = new UserController();
+        this.userController = new UserController();
     }
 
     public void gameStart(){
         System.out.println(GameMessage.START_GAME);
         boolean isStartGame = true;
         while (isStartGame){
-            String strikeAndBallToString = computerService.getNumberResult(user.inputNumber());
+            String strikeAndBallToString = computerService.getNumberResult(userController.inputNumber());
             System.out.println(strikeAndBallToString);
             isStartGame = checkCorrectNumber(strikeAndBallToString);
         }
