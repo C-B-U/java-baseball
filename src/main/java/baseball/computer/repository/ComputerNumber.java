@@ -1,10 +1,6 @@
 package baseball.computer.repository;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 
 public class ComputerNumber {
@@ -27,12 +23,12 @@ public class ComputerNumber {
 
     public Long checkBaseballBall(List<Integer> userNumber){
         return IntStream.range(0, userNumber.size())
-                .filter(isBall(userNumber))
+                .filter(i -> isBall(userNumber.get(i),randomNumbers.get(i)))
                 .count();
     }
 
-    private IntPredicate isBall(List<Integer> userNumber) {
-        return i -> randomNumbers.contains(userNumber.get(i))
-                && !isStrike(userNumber.get(i), randomNumbers.get(i));
+    private boolean isBall(int userNumber, int computerNumber) {
+        return randomNumbers.contains(userNumber)
+                && !isStrike(userNumber, computerNumber);
     }
 }
