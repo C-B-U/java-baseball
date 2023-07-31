@@ -17,14 +17,14 @@ public class GameController {
         System.out.println(GameMessage.START_GAME);
         boolean isStartGame = true;
         while (isStartGame){
-            String strikeAndBallToString = computerService.getNumberResult(userController.inputNumber());
-            System.out.println(strikeAndBallToString);
-            isStartGame = checkCorrectNumber(strikeAndBallToString);
+            String strikeAndBallResultMessage = computerService.getNumberResult(userController.inputNumber());
+            System.out.println(strikeAndBallResultMessage);
+            isStartGame = isThreeStrike(strikeAndBallResultMessage);
         }
 
     }
 
-    private boolean checkCorrectNumber(String strikeAndBallToString){
+    private boolean isThreeStrike(String strikeAndBallToString){
         if (strikeAndBallToString.equals(GameMessage.THREE_STRIKE.toString())){
             System.out.println(GameMessage.THREE_STRIKE_GAME_OVER);
             System.out.println(GameMessage.START_GAME_OR_STOP_GAME);
