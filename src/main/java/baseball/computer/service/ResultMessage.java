@@ -2,38 +2,33 @@ package baseball.computer.service;
 
 public class ResultMessage {
 
-    private final static int NO_EVENT = 0;
-    private StringBuilder resultMessage;
-
-    public ResultMessage() {
-        this.resultMessage = null;
-    }
-
+    private static final int NO_COUNT = 0;
 
     public String toString(Long strike, Long ball){
-        resultMessage = new StringBuilder();
-        isNothing(strike,ball);
-        isBall(ball);
-        isStrike(strike);
+        StringBuilder resultMessage = new StringBuilder();
+        appendNothingMessage(strike, ball, resultMessage);
+        appendBallMessage(ball, resultMessage);
+        appendStrikeMessage(strike, resultMessage);
         return resultMessage.toString();
     }
 
-    private void isBall(Long ball){
-        if (ball != NO_EVENT){
+    private void appendBallMessage(Long ball, StringBuilder resultMessage){
+        if (ball != NO_COUNT){
             resultMessage.append(ball);
             resultMessage.append(BaseballMessage.BALL);
+            resultMessage.append(BaseballMessage.BLANK);
         }
     }
 
-    private void isStrike(Long strike){
-        if(strike != NO_EVENT){
+    private void appendStrikeMessage(Long strike, StringBuilder resultMessage){
+        if(strike != NO_COUNT){
             resultMessage.append(strike);
             resultMessage.append(BaseballMessage.STRIKE);
         }
     }
 
-    private void isNothing(Long strike, Long ball){
-        if(strike == NO_EVENT && ball == NO_EVENT){
+    private void appendNothingMessage(Long strike, Long ball, StringBuilder resultMessage){
+        if(strike == NO_COUNT && ball == NO_COUNT){
             resultMessage.append(BaseballMessage.NOTHING);
         }
     }
