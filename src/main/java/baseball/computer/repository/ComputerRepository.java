@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ComputerRepository {
     private static final int COMPUTER_NUMBER_SiZE = 3;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 9;
     private ComputerNumber computerNumber;
     private Long strike;
     private Long ball;
@@ -27,7 +29,7 @@ public class ComputerRepository {
     public List<Integer> makeRandomNumber() {
         List<Integer> randomNumbers = new ArrayList<>();
         while (randomNumbers.size() < COMPUTER_NUMBER_SiZE) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            int randomNumber = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
             if (!randomNumbers.contains(randomNumber)) {
                 randomNumbers.add(randomNumber);
             }
