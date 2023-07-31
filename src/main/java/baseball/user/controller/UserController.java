@@ -6,12 +6,12 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
-public class User {
+public class UserController {
 
     private final UserService userService;
 
-    public User(UserService userService){
-        this.userService = userService;
+    public UserController(){
+        this.userService = new UserService();
     }
 
     public List<Integer> inputNumber(){
