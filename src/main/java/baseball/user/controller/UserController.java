@@ -8,15 +8,17 @@ import java.util.List;
 
 public class UserController {
 
+    private static final String INPUT_USER_NUMBER = "숫자를 입력해주세요 : ";
     private final UserService userService;
+    private final InputValidator inputValidator;
 
     public UserController(){
         this.userService = new UserService();
+        this.inputValidator = new InputValidator();
     }
 
     public List<Integer> inputNumber(){
-        InputValidator inputValidator = new InputValidator();
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(INPUT_USER_NUMBER);
         String userNumber = inputValidator.validateUserNumberCorrect(Console.readLine());
         return userService.userNumberIntegerList(userNumber);
     }
