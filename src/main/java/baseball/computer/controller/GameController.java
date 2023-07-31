@@ -1,18 +1,18 @@
 package baseball.computer.controller;
 
 import baseball.computer.service.ComputerService;
-import baseball.user.controller.User;
-import baseball.user.service.UserService;
+import baseball.user.controller.UserController;
 import camp.nextstep.edu.missionutils.Console;
-public class BaseballNumber {
+public class GameController {
     private final ComputerService computerService;
+    private final UserController user;
 
-    public BaseballNumber(){
+    public GameController(){
         this.computerService = new ComputerService();
+        this.user = new UserController();
     }
 
     public void gameStart(){
-        User user = new User(new UserService());
         System.out.println("숫자 야구 게임을 시작합니다.");
         boolean startGame = true;
         while (startGame){
