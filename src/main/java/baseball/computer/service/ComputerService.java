@@ -8,11 +8,11 @@ import java.util.List;
 public class ComputerService {
 
     private final ComputerRepository computerRepository;
-    private final ResultMessage message;
+    private final ResultMessage resultMessage;
 
     public ComputerService(){
         this.computerRepository = new ComputerRepository();
-        this.message = new ResultMessage();
+        this.resultMessage = new ResultMessage();
     }
 
     public void remakeRandomNumber(){
@@ -21,7 +21,7 @@ public class ComputerService {
 
     public String getNumberResult(List<Integer> userNumber){
         StrikeAndBallDTO strikeAndBall = computerRepository.getStrikeAndBallDTO(userNumber);
-        return message.toString(strikeAndBall.getStrike(), strikeAndBall.getBall());
+        return resultMessage.toString(strikeAndBall.getStrike(), strikeAndBall.getBall());
     }
 
 
