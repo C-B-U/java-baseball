@@ -4,6 +4,7 @@ import baseball.computer.service.ComputerService;
 import baseball.user.controller.UserController;
 import camp.nextstep.edu.missionutils.Console;
 public class GameController {
+    private static final String RESTART_GAME = "1";
     private final ComputerService computerService;
     private final UserController user;
 
@@ -13,12 +14,12 @@ public class GameController {
     }
 
     public void gameStart(){
-        System.out.println("숫자 야구 게임을 시작합니다.");
-        boolean startGame = true;
-        while (startGame){
+        System.out.println(GameMessage.START_GAME);
+        boolean isStartGame = true;
+        while (isStartGame){
             String strikeAndBallToString = computerService.getNumberResult(user.inputNumber());
             System.out.println(strikeAndBallToString);
-            startGame = checkCorrectNumber(strikeAndBallToString);
+            isStartGame = checkCorrectNumber(strikeAndBallToString);
         }
 
     }
@@ -33,7 +34,7 @@ public class GameController {
     }
 
     private boolean isRestartGame(String userStatus){
-        if (userStatus.equals("1")){
+        if (userStatus.equals(RESTART_GAME)){
             computerService.remakeRandomNumber();
             return true;
         }
