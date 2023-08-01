@@ -13,12 +13,12 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 
-public class BaseballResultTest {
+class BaseballResultTest {
 
     ComputerRepository computerRepository = mock(ComputerRepository.class);
 
     @Test
-    @DisplayName("1스트라이크")
+    @DisplayName("1스트라이크인 경우에 strike가 1이다.")
     void checkOneStrike(){
 
         //given
@@ -34,7 +34,7 @@ public class BaseballResultTest {
     }
 
     @Test
-    @DisplayName("2볼")
+    @DisplayName("2볼인 경우에 ball이 2이다.")
     void checkTwoBall(){
 
         //given
@@ -49,7 +49,7 @@ public class BaseballResultTest {
     }
 
     @Test
-    @DisplayName("1볼 1스트라이크")
+    @DisplayName("1볼 1스트라이크인 경우에 ball이 1이고 strike가 1이다.")
     void checkOneBallOneStrike(){
 
         //given
@@ -66,7 +66,7 @@ public class BaseballResultTest {
     }
 
     @Test
-    @DisplayName("3스트라이크")
+    @DisplayName("3스트라이크인 경우에 strike가 3이다.")
     void checkThreeStrike(){
 
         //given
