@@ -18,8 +18,8 @@ public class StrikeAndBallCount {
         GameResult result = new GameResult();
         for (int position = 0; position < NUMBERS_LENGTH; position++) {
             BallStatus ballStatus = decideBallStatus(position);
-            int ballCount = result.get(ballStatus);
-            result.set(ballStatus, ballCount+1);
+            int ballCount = result.getPlusOne(ballStatus);
+            result.set(ballStatus, ballCount);
         }
         return result;
     }
