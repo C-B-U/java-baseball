@@ -12,6 +12,10 @@ public final class Answer {
         this.currentAnswer = Collections.unmodifiableList(generateRandomNumbers());
     }
 
+    public static Answer createAnswer() {
+        return new Answer();
+    }
+
     private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 RandomNumberRange.MIN.getNum(),
@@ -21,10 +25,6 @@ public final class Answer {
 
     public Integer findByIndex(final Integer index) {
         return currentAnswer.get(index);
-    }
-
-    public static Answer createAnswer() {
-        return new Answer();
     }
 
     public boolean hasNum(final int attemptNum) {

@@ -1,11 +1,11 @@
 package baseball;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class ResultProvider {
-    private final CountProvider strikeCountProvider = s -> Long.valueOf(s.filter(i -> i == StrikeBall.STRIKE).count()).intValue();
-    private final CountProvider ballCountProvider = s -> Long.valueOf(s.filter(i -> i == StrikeBall.BALL).count()).intValue();
     private final Answer answer;
     private final String attempt;
 
@@ -14,22 +14,19 @@ public class ResultProvider {
         this.attempt = attempt;
     }
 
-    public BallCount getResult() {
-        final Integer strikeNum = countOfStrikeBall(strikeCountProvider, getStrikeBallStream());
-        final Integer ballNum = countOfStrikeBall(ballCountProvider, getStrikeBallStream());
-        return BallCount.ofStrikeAndBallNum(ballNum, strikeNum);
+    public Result calculateResult() {
+        final List<StrikeBall> strikeBalls = mapToStrikeBalls();
+        final int strikeCount = Collections.frequency(strikeBalls, StrikeBall.STRIKE);
+        final int ballCount = Collections.frequency(strikeBalls, StrikeBall.BALL);
+        return new Result(strikeCount, ballCount);
     }
 
-    private Integer countOfStrikeBall(final CountProvider countProvider, final Stream<StrikeBall> strikeBallStream) {
-        return countProvider.countOf(strikeBallStream);
-    }
-
-    private Stream<StrikeBall> getStrikeBallStream() {
+    private List<StrikeBall> mapToStrikeBalls() {
         return IntStream.range(0, 3).mapToObj(i -> {
             final int attemptNum = convertToIntWithIndex(i);
             final int answerNum = findAnswerNumByIndex(i);
             return checkStrikeBall(answerNum, attemptNum, i);
-        });
+        }).collect(Collectors.toUnmodifiableList());
     }
 
     private StrikeBall checkStrikeBall(final int answerNum, final int attemptNum, final int index) {

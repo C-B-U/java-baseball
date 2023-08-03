@@ -5,17 +5,20 @@ public class ComponentFactory {
     public BaseballController baseballController() {
         return new BaseballController(
                 baseballService(),
-                userAttemptValidator(),
                 outputWriter(),
                 inputReader());
     }
 
+    private ResultOutputFormatter resultOutputFormatter() {
+        return new ResultOutputFormatter();
+    }
+
     private InputReader inputReader() {
-        return new InputReader();
+        return new InputReader(inputValidator());
     }
 
     private OutputWriter outputWriter() {
-        return new OutputWriter();
+        return new OutputWriter(resultOutputFormatter());
     }
 
     private BaseballService baseballService() {
@@ -26,7 +29,7 @@ public class ComponentFactory {
         return new BaseballRepository();
     }
 
-    private InputValidator userAttemptValidator() {
+    private InputValidator inputValidator() {
         return new InputValidator();
     }
 }

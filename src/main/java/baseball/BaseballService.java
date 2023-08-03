@@ -12,10 +12,10 @@ public class BaseballService {
         baseballRepository.saveAnswer(answer);
     }
 
-    public BallCount calculateResult(final String attempt) {
+    public Result calculateResult(final String attempt) {
         final Answer currentAnswer = findCurrentAnswer();
         final ResultProvider resultProvider = new ResultProvider(currentAnswer, attempt);
-        return resultProvider.getResult();
+        return resultProvider.calculateResult();
     }
 
     private Answer findCurrentAnswer() {

@@ -15,55 +15,69 @@
 ## 구현 클래스 명세
 
 ### Application - 실행을 담당
-- (main) 어플리케이션의 실행
-- (askContinue) 게임 종료 후 계속 진행 여부를 묻는 메서드
+- main() 어플리케이션의 실행
 
 ### BaseballController - 정답 관련 요청과 입력 검증을 담당
-- (startGame) 하나의 게임 실행
-- (validateUserAttempt) 유저의 시도 마다 입력값 검증
-- (printGameMessage) 게임 메시지 출력
-- (playGame) 게임 메인 로직 실행
-- (getResult) 결과 계산 로직 실행
-- (getUserAttempt) 유저의 정답 시도 입력
+- startGame() 하나의 게임 실행
+- askIsContinue() 게임 종료시 이어서 할 지에 대한 여부 검증
+- playGame() 게임 메인 로직 실행
+- getUserAttempt() 유저의 정답 시도 입력
+- getResult() 결과 계산 로직 실행
 
 ### BaseballService - 정답 관련 서비스 로직 담당
-- (saveAnswer) 정답을 생성하여 저장
-- (calculateResult) 결과를 계산
-- (findCurrentAnswer) 현재 정답 정보를 조회
+- saveAnswer() 정답을 생성하여 저장
+- calculateResult() 결과를 계산
+- findCurrentAnswer() 현재 정답 정보를 조회
 
 ### BaseballRepository - 정답 정보 저장, 조회를 담당
-- (saveAnswer) 정답 저장
-- (findCurrentAnswer) 현재 정답 정보를 조회
+- saveAnswer() 정답 저장
+- findCurrentAnswer() 현재 정답 정보를 조회
 
 ### Answer - 정답 정보를 가진 불변클래스
-- (generateRandomNumbers) 랜덤한 숫자를 생성
-- (createAnswer) 불변클래스의 팩토리 메서드
-- (hasNum) 매개변수로 받는 숫자가 정답에 포함됐는지 확인
+- generateRandomNumbers() 랜덤한 숫자를 생성
+- createAnswer() 불변클래스의 팩토리 메서드
+- hasNum() 매개변수로 받는 숫자가 정답에 포함됐는지 확인
 
 ### ComponentFactory - 컴포넌트들의 생성을 담당
-- (baseballController) baseballController 생성
-- (baseballService) baseballService 생성
-- (baseballRepository) baseballRepository 생성
-- (inputValidator) inputValidator 생성
+- 각 컴포넌트들을 생성
 
 ### InputValidator - 유저의 시도에 대한 입력값 검증
-- (validateUserAttempt) 유저의 시도에 대한 입력값 검증
-- (notValidAttemptString) 입력 String 이 유효한지 검증
-- (hasDuplicate) 중복된 숫자가 입력되었는지 검증
-- (validateIsContinue) 계속 진행할지 여부에 대한 입력 검증
-- (notValidContinueString) 계속 진행할지 여부에 대한 입력값 검증
+- validateUserAttempt() 유저의 시도에 대한 입력값 검증
+- notValidAttemptString() 입력 String 이 유효한지 검증
+- hasDuplicate() 중복된 숫자가 입력되었는지 검증
+- validateIsContinue() 계속 진행할지 여부에 대한 입력 검증
+- notValidContinueString() 계속 진행할지 여부에 대한 입력값 검증
 
-### CountProvider - 스트림에서 스트라이크, 볼의 개수를 세는 함수형 인터페이스
-- (countOf) Stream<BallCount> 를 받아 Integer 를 반환
+### InputReader - 사용자의 입력값 받아와 검증
+- readUserAttempt() 유저의 시도 입력 받기 및 입력값 검증
+- readIsContinue() 게임 이어서 하기 여부 입력 받기 및 입력값 검증
+
+### OutputWriter - 문자열 출력
+- write() 문자열을 그대로 출력
+- writeWithLine() 맨 끝에 개행문자와 함께 출력
 
 ### ResultProvider - Answer 객체와 유저의 입력을 받아 결과를 반환
-- (getResult) 최종 출력할 결과를 반환
-- (countOfStrikeBall) 스트라이크, 볼의 개수를 계산
-- (getStrikeBallStream) 입력값을 StrikeBall 으로 변환한 스트림을 반환
-- (checkStrikeBall) 입력값 한 자리를 인덱스와 함께 비교해 strike, ball 여부를 판단
-- (checkBallOrNone) 같은 인덱스에 같은 값이 없는 경우 ball 인지 판단
-- (findAnswerNumByIndex) 정답 숫자에서 인덱스에 해당하는 숫자 반환
-- (convertToIntWithIndex) String 에서 인덱스에 해당하는 숫자를 int 로 변환
+- calculateResult() 최종 출력할 결과를 반환
+- mapToStrikeBalls() StrikeBall의 리스트로 변환
+- checkStrikeBall() 계산을 통해 StrikeBall 하나로 변환 및 반환
+- checkBallOrNone() 같은 인덱스에 같은 값이 없는 경우 ball 인지 판단
+- findAnswerNumByIndex() 정답 숫자에서 인덱스에 해당하는 숫자 반환
+- convertToIntWithIndex() String 에서 인덱스에 해당하는 숫자를 int 로 변환
+
+### ResultOutputFormatter - 출력할 결과 포맷을 만듦
+- writeWithLine() 개행문자화 함께 출력
+- write() 문자열 그대로 출력
+- writeWithFormat() 결과 형태로 변환하여 출력
+
+### Result - strike 개수롸 ball 개수를 갖는 dto
+- getStrikeNum() strike 개수 반환
+- getBallNum() ball 개수 반환
+
+### ResultOutputFormatter - Result를 결과 문자열로 변환
+- format() 결과 문자열로 변환
+- getFormattedOutput() format 진행
+- toCountResult() strike 혹은 ball 이 있을 경우 변환 진행
+- appendStrikeIfExists() strike의 개수에 따라 분기하여 변환
 
 ## 구현 열거형 명세
 
@@ -76,6 +90,5 @@
 ### StrikeBall
 - 스트라이크, 볼을 나타낸다.
 
-### BallCount
-- 스트라이크, 볼의 개수에 따른 볼카운트를 계산한다.
-- 상황에 맞는 메시지를 갖는다.
+### ResultMessage
+- 결과 메시지를 나타낸다.
