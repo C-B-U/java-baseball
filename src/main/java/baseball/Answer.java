@@ -18,14 +18,14 @@ public final class Answer {
     }
 
     private List<Integer> generateRandomNumbers() {
-        List<Integer> computer = new ArrayList<>();
-        while (computer.size() < 3) {
+        List<Integer> randomNumbers = new ArrayList<>();
+        while (randomNumbers.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber);
+            if (!randomNumbers.contains(randomNumber)) {
+                randomNumbers.add(randomNumber);
             }
         }
-        return computer;
+        return randomNumbers;
     }
 
     public Integer findByIndex(final Integer index) {
