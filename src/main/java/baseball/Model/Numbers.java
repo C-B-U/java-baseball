@@ -21,4 +21,8 @@ public class Numbers {
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
+    public boolean hasSize(int size) {
+        return numbers.size() == size;
+    }
 }
