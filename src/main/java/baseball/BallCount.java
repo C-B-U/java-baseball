@@ -30,7 +30,8 @@ public enum BallCount {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public String getMessage() {
+    @Override
+    public String toString() {
         return this.message;
     }
 }

@@ -1,50 +1,65 @@
 package baseball;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class BaseballController {
+    private static final int CONTINUE_COMMAND = 1;
     private final BaseballService baseballService;
     private final InputValidator inputValidator;
+    private final OutputWriter outputWriter;
+    private final InputReader inputReader;
 
-    public BaseballController(final BaseballService baseballService, final InputValidator inputValidator) {
+    public BaseballController(
+            final BaseballService baseballService,
+            final InputValidator inputValidator,
+            final OutputWriter outputWriter,
+            final InputReader inputReader) {
+
         this.baseballService = baseballService;
         this.inputValidator = inputValidator;
+        this.outputWriter = outputWriter;
+        this.inputReader = inputReader;
     }
 
     public void startGame() {
-        printGameMessage(GameMessage.GAME_START.getMessage());
-        baseballService.saveAnswer();
-        playGame();
+        boolean isContinue = true;
+        while(isContinue) {
+            outputWriter.printWithLine(GameMessage.GAME_START);
+            baseballService.saveAnswer();
+            playGame();
+            isContinue = askIsContinue();
+        }
+    }
+
+    private boolean askIsContinue() {
+        outputWriter.printWithLine(GameMessage.CREATE_NEW_GAME_OR_NOT);
+        final String input = inputReader.read();
+        inputValidator.validateIsContinue(input);
+        return Integer.parseInt(input) == CONTINUE_COMMAND;
     }
 
     private void playGame() {
-        boolean isContinue = Boolean.TRUE;
+        boolean isContinue = true;
         while(isContinue) {
             final String userAttempt = getUserAttempt();
             final BallCount result = getResult(userAttempt);
 
             if (result == BallCount.THREE_STRIKE) {
-                printGameMessage(GameMessage.GAME_FINISH.getMessage());
-                isContinue = Boolean.FALSE;
+                outputWriter.printWithLine(GameMessage.GAME_FINISH);
+                isContinue = false;
             }
         }
     }
 
     private String getUserAttempt() {
-        printGameMessage(GameMessage.INPUT_NEXT_NUMBER.getMessage());
-        final String userAttempt = Console.readLine();
+        outputWriter.print(GameMessage.INPUT_NEXT_NUMBER);
+        final String userAttempt = inputReader.read();
         validateUserAttempt(userAttempt);
         return userAttempt;
     }
 
-    private BallCount getResult(String userAttempt) {
+    private BallCount getResult(final String userAttempt) {
         final BallCount result = baseballService.calculateResult(userAttempt);
-        printGameMessage(result.getMessage());
+        outputWriter.printWithLine(result);
         return result;
-    }
-
-    private void printGameMessage(final String message) {
-        System.out.println(message);
     }
 
     private void validateUserAttempt(final String userAttempt) {
