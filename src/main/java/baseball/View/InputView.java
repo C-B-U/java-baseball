@@ -4,16 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import baseball.Model.Numbers;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public List<Integer> readUserInput() {
+    public Numbers readUserInput() {
         Message message = Message.USER_INPUT_MESSAGE;
         System.out.print(message.getMessage());
         String userInput = Console.readLine();
         InputValidator.isCorrectInput(userInput);
-        return userInputToList(userInput);
+        return new Numbers(userInputToList(userInput));
     }
 
     public Integer readRestartInput() {

@@ -1,7 +1,5 @@
 package baseball.Model;
 
-import java.util.List;
-
 public class StrikeAndBallCount {
 
     private final Computer computer;
@@ -38,7 +36,7 @@ public class StrikeAndBallCount {
         return BallStatus.BALL;
     }
     private boolean hasNumber(int position) {
-        List<Integer> computerNumber = computer.getRandomNumbers();
+        Numbers computerNumber = computer.getRandomNumbers();
         int userNumber = user.getByPosition(position);
         return computerNumber.contains(userNumber);
     }

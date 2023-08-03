@@ -1,16 +1,14 @@
 package baseball.Model;
 
-import java.util.List;
-
 public class User {
 
-    private final List<Integer> inputNumbers;
+    private final Numbers inputNumbers;
 
-    public User(List<Integer> inputNumbers) {
+    public User(Numbers inputNumbers) {
         this.inputNumbers = inputNumbers;
     }
 
-    public List<Integer> getUserInputNumber() {
+    public Numbers getUserInputNumber() {
         return inputNumbers;
     }
 
