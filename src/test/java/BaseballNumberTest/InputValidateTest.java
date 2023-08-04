@@ -1,7 +1,7 @@
 package BaseballNumberTest;
 
 
-import baseball.user.exeption.InputValidator;
+import baseball.user.exception.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

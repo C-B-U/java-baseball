@@ -1,4 +1,4 @@
-package baseball.user.exeption;
+package baseball.user.exception;
 
 import java.util.Set;
 import java.util.stream.Collectors;

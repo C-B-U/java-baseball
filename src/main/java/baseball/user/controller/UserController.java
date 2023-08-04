@@ -1,6 +1,6 @@
 package baseball.user.controller;
 
-import baseball.user.exeption.InputValidator;
+import baseball.user.exception.InputValidator;
 import baseball.user.service.UserService;
 import camp.nextstep.edu.missionutils.Console;
 
