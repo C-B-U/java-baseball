@@ -10,7 +10,7 @@ public class InputViewTest {
 
 
     @Test
-    void 글자수_예외_테스트() {
+    void 글자수_예외() {
         String userInput = "1234";
         assertThatThrownBy(() -> InputValidator.isCorrectInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -18,7 +18,7 @@ public class InputViewTest {
     }
 
     @Test
-    void 숫자이외_문자_입력_예외_테스트() {
+    void 숫자이외_문자_입력_예외() {
         String userInput = "12A";
         assertThatThrownBy(() -> InputValidator.isCorrectInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -26,7 +26,7 @@ public class InputViewTest {
     }
 
     @Test
-    void 중복_숫자_예외_테스트() {
+    void 중복_숫자_예외() {
         String userInput = "122";
         assertThatThrownBy(() -> InputValidator.isCorrectInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -34,7 +34,7 @@ public class InputViewTest {
     }
 
     @Test
-    void 재시작_예외_테스트() {
+    void 재시작_예외() {
         String userInput = "3";
         assertThatThrownBy(() -> InputValidator.isCorrectRestartInput(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
