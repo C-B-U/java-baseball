@@ -8,9 +8,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Computer {
 
     private final Numbers randomNumbers;
-    private final static Integer MAXIMUM_BALL_COUNT = 3;
-    private final static Integer MIN_BALL_NUMBER = 1;
-    private final static Integer MAX_BALL_NUMBER = 9;
+    private static final Integer MAXIMUM_BALL_COUNT = 3;
+    private static final Integer MIN_BALL_NUMBER = 1;
+    private static final Integer MAX_BALL_NUMBER = 9;
 
     public Computer() {
         this.randomNumbers = createRandomNumbers();

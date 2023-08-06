@@ -8,7 +8,7 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final static Integer RESTART = 1;
+    private static final Integer RESTART = 1;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;

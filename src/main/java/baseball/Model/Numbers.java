@@ -14,8 +14,8 @@ public class Numbers {
         return numbers;
     }
 
-    public int get(int positiion) {
-        return numbers.get(positiion);
+    public int get(int position) {
+        return numbers.get(position);
     }
 
     public boolean contains(int number) {
