@@ -19,17 +19,17 @@ public class GameController {
         boolean isProgress = true;
         outputView.printStartMessage();
         while (isProgress) {
-            Computer computer = new Computer();
-            playUntilThreeStrikes(computer);
+            RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+            playUntilThreeStrikes(randomNumberGenerator);
             isProgress = restartOrEnd();
         }
     }
 
-    private void playUntilThreeStrikes(Computer computer) {
+    private void playUntilThreeStrikes(RandomNumberGenerator randomNumberGenerator) {
         boolean isNotThreeStrike = true;
         while(isNotThreeStrike) {
             User user = new User(inputView.readUserInput());
-            StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(computer, user);
+            StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(randomNumberGenerator, user);
             GameResult result = strikeAndBallCount.calculateBallAndStrikeCount();
             outputView.printGameResult(result);
             isNotThreeStrike = result.isNotThreeStrike();

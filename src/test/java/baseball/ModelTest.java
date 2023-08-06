@@ -11,8 +11,8 @@ public class ModelTest {
 
     @Test
     void 랜덤_숫자_생성() {
-        Computer computer = new Computer();
-        Numbers computerNumbers = computer.getRandomNumbers();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        Numbers computerNumbers = randomNumberGenerator.getRandomNumbers();
         assertThat(computerNumbers.hasSize(3)).isTrue();
     }
 
@@ -27,10 +27,10 @@ public class ModelTest {
 
     @Test
     void 스트라이크_확인_기능() {
-        Computer computer = new Computer();
-        Numbers userInput = computer.getRandomNumbers();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        Numbers userInput = randomNumberGenerator.getRandomNumbers();
         User user = new User(userInput);
-        StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(computer, user);
+        StrikeAndBallCount strikeAndBallCount = new StrikeAndBallCount(randomNumberGenerator, user);
 
         GameResult result = strikeAndBallCount.calculateBallAndStrikeCount();
 

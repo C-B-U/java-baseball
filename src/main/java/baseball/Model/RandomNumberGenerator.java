@@ -5,14 +5,14 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class Computer {
+public class RandomNumberGenerator {
 
     private final Numbers randomNumbers;
     private static final Integer MAXIMUM_BALL_COUNT = 3;
     private static final Integer MIN_BALL_NUMBER = 1;
     private static final Integer MAX_BALL_NUMBER = 9;
 
-    public Computer() {
+    public RandomNumberGenerator() {
         this.randomNumbers = createRandomNumbers();
     }
 
